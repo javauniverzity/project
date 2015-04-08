@@ -8,7 +8,7 @@ import org.apache.commons.io.FileUtils;
 public class Main {
 
 	public static void main(String[] args) {
-		File file = new File("test.txt");
+		File file = new File("d:\\test.txt");
 		try {
 			FileUtils.readLines(file);
 		} catch (IOException e) {
