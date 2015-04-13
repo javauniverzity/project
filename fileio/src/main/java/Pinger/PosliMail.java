@@ -1,5 +1,7 @@
 package Pinger;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -13,6 +15,15 @@ import javax.mail.internet.MimeMessage;
 public class PosliMail {
 
 	public static void send()  {
+		
+		String adr = "";
+		
+		try (BufferedReader cteckaAdr = new BufferedReader(new FileReader("Adresati.txt"))) {
+					adr += cteckaAdr.readLine();
+		}
+		catch (Exception e) {
+	        System.err.println("Chyba pøi ètení ze souboru Adresati.txt.");
+		}		
 
 		// nastavime vlastnosti pro odeslani, jedna se o vyuziti gmail uctu ktery je zdarma a spolehlivy, pripojime se tedy k nemu a z nej posleme email
 		final Properties props = new Properties();
@@ -40,7 +51,7 @@ public class PosliMail {
 			message.setFrom(new InternetAddress("JavaSenderJT@gmail.com"));
 			
 			// vyplnime komu budeme posilat email, tech muze byt vice
-			message.setRecipients(Message.RecipientType.TO,	InternetAddress.parse("honzatt@seznam.cz"));
+			message.setRecipients(Message.RecipientType.TO,	InternetAddress.parse(adr));
 			
 			// zadáme predmet emailu
 			message.setSubject("Nedostupné IP adresy");
