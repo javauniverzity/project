@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
+	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+
+	<mvc:annotation-driven />
+
+
+	<context:component-scan base-package="cz.bodyplan.web.spring" />
+
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/pages/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+
+	<!-- <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver"> -->
+	<!-- <property name="viewClass"> -->
+	<!-- <value> -->
+	<!-- org.springframework.web.servlet.view.tiles2.TilesView -->
+	<!-- </value> -->
+	<!-- </property> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer"> -->
+	<!-- <property name="definitions"> -->
+	<!-- <list> -->
+	<!-- <value>/WEB-INF/tiles-config.xml</value> -->
+	<!-- </list> -->
+	<!-- </property> -->
+	<!-- </bean> -->
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- one of the properties available; the maximum file size in bytes -->
+		<property name="maxUploadSize" value="8000000" />
+	</bean>
+
+	<bean id="urlMapping"
+		class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
+		<property name="caseSensitive" value="true" />
+	</bean>
+
+	<bean id="webexpressionHandler"
+		class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
+
+	<!-- Security interceptor -->
+	<bean id="filterSecurityInterceptor"
+		class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="accessDecisionManager" ref="accessDecisionManager" />
+		<property name="securityMetadataSource">
+			<security:filter-security-metadata-source>
+				<security:intercept-url pattern="/monitoring*"
+					access="ROLE_ADMIN" />
+				<security:intercept-url pattern="/home*"
+					access="ROLE_OPERATOR" />
+				<security:intercept-url pattern="/tasks*"
+					access="ROLE_OPERATOR" />
+				<security:intercept-url pattern="/settings*"
+					access="ROLE_OPERATOR" />
+				<security:intercept-url pattern="/system*"
+					access="ROLE_OPERATOR" />
+				<security:intercept-url pattern="/logDownload*"
+					access="ROLE_OPERATOR" />
+			</security:filter-security-metadata-source>
+		</property>
+	</bean>
+
+	<!-- Filter chain, to minimize changes in web.xml, here we have filter chain. -->
+	<bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
+		<constructor-arg>
+			<list>
+				<security:filter-chain pattern="/**"
+					filters="httpSessionContextIntegrationFilter,rememberMeProcessingFilter,logoutFilter,loginProcessingFilter,exceptionTranslationFilter,filterSecurityInterceptor" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<!-- remember me processing filter -->
+	<bean id="rememberMeProcessingFilter"
+		class="org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter">
+		<constructor-arg name="authenticationManager" ref="authenticationManager" />
+		<constructor-arg name="rememberMeServices" ref="rememberMeServices" />
+	</bean>
+
+	<!-- Stores Authentication between requests (handy for form authentication) -->
+	<bean id="httpSessionContextIntegrationFilter"
+		class="org.springframework.security.web.context.SecurityContextPersistenceFilter">
+	</bean>
+	<!-- Converts Acegi authentication exception to HTTP error codes -->
+	<bean id="exceptionTranslationFilter"
+		class="org.springframework.security.web.access.ExceptionTranslationFilter">
+		<constructor-arg name="authenticationEntryPoint"
+			ref="loginProcessingFilterEntryPoint" />
+		<property name="accessDeniedHandler">
+			<bean
+				class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+				<property name="errorPage" value="/login" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="logoutFilter"
+		class="org.springframework.security.web.authentication.logout.LogoutFilter">
+		<constructor-arg value="/login" /> <!-- URL redirected to after logout -->
+		<constructor-arg>
+			<list>
+				<bean
+					class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
+				<ref local="rememberMeServices" />
+			</list>
+		</constructor-arg>
+		<property name="filterProcessesUrl" value="/j_spring_security_logout" />
+	</bean>
+
+	<!-- This bean specifies that a user can access the protected methods -->
+	<!-- if they have any one of the roles specified in the objectDefinitionSource 
+		above. -->
+	<bean id="accessDecisionManager"
+		class="org.springframework.security.access.vote.AffirmativeBased">
+		<constructor-arg>
+			<list>
+				<bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<!-- Concurrent sessions -->
+	<bean id="concurrentSessionFilter"
+		class="org.springframework.security.web.session.ConcurrentSessionFilter">
+		<constructor-arg name="sessionRegistry" ref="sessionRegistry" />
+		<constructor-arg name="expiredUrl" value="/login.html" />
+	</bean>
+
+	<bean id="concurrentSessionController"
+		class="org.springframework.security.web.authentication.session.ConcurrentSessionControlStrategy">
+		<constructor-arg name="sessionRegistry" ref="sessionRegistry" />
+		<property name="maximumSessions" value="1" />
+	</bean>
+
+	<bean id="sessionRegistry"
+		class="org.springframework.security.core.session.SessionRegistryImpl" />
+
+	<!-- Define filter to handle FORM authentication -->
+	<bean id="loginProcessingFilter"
+		class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+		<property name="authenticationFailureHandler" ref="failureHandler" />
+		<property name="authenticationSuccessHandler" ref="successHandler" />
+
+		<property name="rememberMeServices" ref="rememberMeServices" />
+
+		<property name="filterProcessesUrl">
+			<value>/j_spring_security_check</value>
+		</property>
+		<property name="authenticationManager" ref="authenticationManager" />
+	</bean>
+
+	<bean id="successHandler"
+		class="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler">
+		<property name="defaultTargetUrl" value="/home" /> <!-- which is the default value -->
+	</bean>
+	<bean id="failureHandler"
+		class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+		<property name="defaultFailureUrl" value="/login?error=loginError" />
+	</bean>
+
+	<!-- Define realm for FORM login -->
+	<bean id="loginProcessingFilterEntryPoint"
+		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<constructor-arg name="loginFormUrl" value="/login" />
+		<property name="forceHttps">
+			<value>false</value>
+		</property>
+	</bean>
+
+	<bean id="persistentTokenRepository"
+		class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="rememberMeServices"
+		class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
+		<constructor-arg name="key" value="someTokenName" />
+		<constructor-arg name="userDetailsService" ref="userService" />
+		<constructor-arg name="tokenRepository" ref="persistentTokenRepository" />
+	</bean>
+</beans>
