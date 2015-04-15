@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false">
+	<class name="cz.bodyplan.web.vo.dto.Authority" table="AUTHORITY_TABLE">
+		<!-- ABSTRACT OBJECT -->
+		<id name="id" column="ID" type="java.lang.Long" unsaved-value="null">
+			<generator class="identity" />
+		</id>
+		<property name="name" column="NAME" unique="true" />
+		<property name="description" column="DESCRIPTION" />
+	</class>
+</hibernate-mapping>

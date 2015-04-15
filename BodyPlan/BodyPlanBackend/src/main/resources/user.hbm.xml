@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false">
+	<class name="cz.bodyplan.web.vo.dto.User" table="USER_TABLE" dynamic-update="true">
+
+		<id name="id" column="ID" type="java.lang.Long" unsaved-value="null">
+			<!-- <column name="ID" not-null="true" ></column> -->
+			<generator class="identity" />
+		</id>
+
+		
+		<property name="password" column="PASSWORD" />
+		<property name="username" column="USERNAME" not-null="true"  unique="true" />
+		
+		<set name="authorities" table="RELATION_USER_AUTHORITY" inverse="false" lazy="false" fetch="select" cascade="all">
+			<key>
+				<column name="USER_ID" not-null="true" />
+			</key>
+			<many-to-many class="cz.bodyplan.web.vo.dto.Authority" order-by="name">
+				<column name="AUTHORITY_ID" not-null="true"></column>
+			</many-to-many>
+		</set>
+
+		<property name="firstName" column="FIRST_NAME" />
+		<property name="lastName" column="LAST_NAME" />
+		<property name="createDate" column="CREATE_DATE" />
+		<property name="bmr" column="BMR" />
+		<property name="tdee" column="TDEE" />
+
+		<property name="weight" column="WEIGHT" />
+		<property name="height" column="HEIGHT" />
+		<property name="age" column="AGE" />
+
+		<property name="email" column="EMAIL" />
+
+		<property name="excerciseLevelValue" column="EXCERCISE_LEVEL" />
+		<property name="planValue" column="PLAN" />
+		<property name="formulaValue" column="FORMULA" />
+		<property name="goalValue" column="GOAL" />
+		<property name="sexValue" column="SEX" />
+
+
+	</class>
+</hibernate-mapping>

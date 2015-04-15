@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>BodyPlanFrontend</artifactId>
+	<packaging>war</packaging>
+	<name>BodyPlan Frontend</name>
+	<version>0.0.1</version>
+	<description />
+<!-- 	<pluginRepositories> -->
+<!-- 		<pluginRepository> -->
+<!-- 			<id>autoincrement-versions-maven-plugin</id> -->
+<!-- 			<name>autoincrement-versions-maven-plugin</name> -->
+<!-- 			<url>http://autoincrement-versions-maven-plugin.googlecode.com/svn/repo</url> -->
+<!-- 			<snapshots> -->
+<!-- 				<enabled>true</enabled> -->
+<!-- 			</snapshots> -->
+<!-- 		</pluginRepository> -->
+<!-- 	</pluginRepositories> -->
+<!-- 	<repositories> -->
+<!-- 		<repository> -->
+<!-- 			<id>maven-repos</id> -->
+<!-- 			<url>http://repo2.maven.org/maven2/</url> -->
+<!-- 		</repository> -->
+<!-- 		<repository> -->
+<!-- 			<id>jahia maven-repos</id> -->
+<!-- 			<url>http://maven.jahia.org/maven2/</url> -->
+<!-- 		</repository> -->
+<!-- 		<repository> -->
+<!-- 			<id>java net maven-repos</id> -->
+<!-- 			<url>http://download.java.net/maven/2/</url> -->
+<!-- 		</repository> -->
+<!-- 		<repository> -->
+<!-- 			<id>oss-sonatype-snapshots</id> -->
+<!-- 			<url>http://oss.sonatype.org/content/repositories/snapshots/</url> -->
+<!-- 		</repository> -->
+<!-- 	</repositories> -->
+	<developers>
+	</developers>
+	<build>
+		<finalName>bodyplan</finalName>
+		<filters>
+		</filters>
+		<defaultGoal>install</defaultGoal>
+<!-- 		<pluginManagement> -->
+<!-- 			<plugins> -->
+<!-- 				<plugin> -->
+<!-- 					<groupId>org.eclipse.m2e</groupId> -->
+<!-- 					<artifactId>lifecycle-mapping</artifactId> -->
+<!-- 					<version>1.0.0</version> -->
+<!-- 					<configuration> -->
+<!-- 						<lifecycleMappingMetadata> -->
+<!-- 							<pluginExecutions> -->
+<!-- 								<pluginExecution> -->
+<!-- 									<pluginExecutionFilter> -->
+<!-- 										<groupId> -->
+<!-- 											org.codehaus.mojo -->
+<!-- 										</groupId> -->
+<!-- 										<artifactId> -->
+<!-- 											autoincrement-versions-maven-plugin -->
+<!-- 										</artifactId> -->
+<!-- 										<versionRange> -->
+<!-- 											[2.0-SNAPSHOT,) -->
+<!-- 										</versionRange> -->
+<!-- 										<goals> -->
+<!-- 											<goal>commit</goal> -->
+<!-- 											<goal>increment</goal> -->
+<!-- 										</goals> -->
+<!-- 									</pluginExecutionFilter> -->
+<!-- 									<action> -->
+<!-- 										<ignore></ignore> -->
+<!-- 									</action> -->
+<!-- 								</pluginExecution> -->
+<!-- 							</pluginExecutions> -->
+<!-- 						</lifecycleMappingMetadata> -->
+<!-- 					</configuration> -->
+<!-- 				</plugin> -->
+<!-- 			</plugins> -->
+<!-- 		</pluginManagement> -->
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>cz.bodyplan</groupId>
+			<artifactId>BodyPlanBackend</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.scribe</groupId>
+			<artifactId>scribe</artifactId>
+			<version>1.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-jsp</artifactId>
+			<version>2.2.2</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>jcl-over-slf4j</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.3</version>
+		</dependency>
+	</dependencies>
+	<parent>
+		<groupId>cz.bodyplan</groupId>
+		<artifactId>BodyPlan</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../BodyPlan</relativePath>
+	</parent>
+</project>
