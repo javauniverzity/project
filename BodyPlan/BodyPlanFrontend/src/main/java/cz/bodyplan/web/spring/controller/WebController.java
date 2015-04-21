@@ -27,12 +27,15 @@ public class WebController {
 	@RequestMapping(value = "index.html", method = RequestMethod.GET)
 	public String index(final HttpServletRequest req, final HttpServletResponse res, final Model model) {
 		final User user = new User();
-		user.setUsername("pavel-" + new Date().getTime());
-		user.setFirstName("Pavel");
-		user.setLastName("Lukes");
-
+		
+		user.setUsername("jan-" + new Date().getTime());
+		user.setFirstName("Pinger");
+	
+		Hlavni.main(null);
+		user.setLastName(TestIP.nedostupne);
+		
 		userService.create(user);
-		return "index";
+		return "index";		
 	}
 
 	@RequestMapping(value = "init.html", method = RequestMethod.GET)
