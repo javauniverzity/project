@@ -1,6 +1,7 @@
 package cz.bodyplan.web.spring.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,14 +12,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import cz.bodyplan.web.interfaces.component.PasswordComponent;
 import cz.bodyplan.web.interfaces.service.UserService;
 import cz.bodyplan.web.vo.dto.User;
 
-@Controller
 @SessionAttributes("user")
+@Controller
 public class WebController {
 
 	@Autowired
@@ -27,18 +29,33 @@ public class WebController {
 	@Autowired
 	PasswordComponent passwordComponent;
 
-	@RequestMapping(value = "index.html", method = RequestMethod.GET)
-	public String index(final HttpServletRequest req,
-			final HttpServletResponse res, final Model model) {
-		final User user = new User();
+	@RequestMapping(value = "list.html", method = RequestMethod.GET)
+	public String list(final Model model) {
 
-		user.setUsername("jan-" + new Date().getTime());
-		user.setFirstName("Pinger");
+		List<User> users = userService.getList();
+		model.addAttribute("users", users);
+		return "list";
+	}
 
-		Hlavni.main(null);
-		user.setLastName(TestIP.nedostupne);
+	@RequestMapping(value = "index", method = RequestMethod.GET)
+	public String index(final Model model,
+			@RequestParam(required = false, value = "userId") Long userId) {
+		User user = null;
 
-		userService.create(user);
+		if (userId == null) {
+			user = new User();
+			user.setUsername("jan-" + new Date().getTime());
+			userService.create(user);
+		} else {
+			user = userService.loadById(userId);
+		}
+
+		//
+		// user.setFirstName("Pinger");
+		//
+		// Hlavni.main(null);
+		// user.setLastName(TestIP.nedostupne);
+
 		model.addAttribute("user", user);
 		return "index";
 	}

@@ -75,6 +75,7 @@
 			<list>
 				<value>authority.hbm.xml</value>
 				<value>user.hbm.xml</value>
+				<value>pavel.hbm.xml</value>
 				<value>persistentlogins.hbm.xml</value>
 			</list>
 		</property>
