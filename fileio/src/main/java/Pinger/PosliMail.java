@@ -57,7 +57,7 @@ public class PosliMail {
 			message.setSubject("Nedostupné IP adresy");
 			
 			// vyplnime telo emailu, to muze byt samozrejme slozeno z texu i hodnot (pri skladani doporucuji pouzit StringBuilder)
-			message.setText(TestIP.nedostupne);
+			message.setText("vsichni jsou uz mrtvi Dejve");
 
 			// odesleme zpravu
 			Transport.send(message);
