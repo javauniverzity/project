@@ -20,5 +20,7 @@
 	<form:button>submit</form:button>
 
 </form:form>
+<br>
+<a href="moje.html">MAREK</a>
 </body>
 </html>

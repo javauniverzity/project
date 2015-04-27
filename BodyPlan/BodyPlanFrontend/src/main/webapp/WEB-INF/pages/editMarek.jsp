@@ -10,8 +10,8 @@
 <head>
 </head>		
 	<body>	
-		Vytvoř result:
-		<form:form commandName="marek" action="makeMarek.html">
+		Edituj: ${marek.result} ID: ${marek.id}
+		<form:form commandName="marek" action="editujMarek.html">
 			<form:input path="result"/><br/>
 			<form:button>submit</form:button>
 		</form:form>

@@ -6,10 +6,15 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import cz.bodyplan.web.interfaces.repository.MarekRepository;
 import cz.bodyplan.web.vo.dto.Marek;
-import cz.bodyplan.web.vo.dto.User;
 
+
+
+@Repository
 public class MarekRepositoryImpl extends Template<Marek> implements MarekRepository{
 
 	@Override
@@ -24,6 +29,12 @@ public class MarekRepositoryImpl extends Template<Marek> implements MarekReposit
 		
 	}
 
+	@Override
+	@Transactional(readOnly = false)
+	public void update(Marek object) {
+		super.update(object);
+	}
+	
 	@Override
 	public Marek loadById(Long id) {
 		if (id == null) {
@@ -43,5 +54,14 @@ public class MarekRepositoryImpl extends Template<Marek> implements MarekReposit
 		}
 		return null;
 	}
-
+	@Override
+	public List<Marek> getListOfMareks() {
+		final CriteriaBuilder criteriaBuilder = entityManager
+				.getCriteriaBuilder();
+		final CriteriaQuery<Marek> createQuery = criteriaBuilder
+				.createQuery(Marek.class);
+		final CriteriaQuery<Marek> select = createQuery.select(createQuery
+				.from(Marek.class));
+		return findByCriteria(select);
+	}
 }
