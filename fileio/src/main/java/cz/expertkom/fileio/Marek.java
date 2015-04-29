@@ -1,5 +1,5 @@
 package cz.expertkom.fileio;
 
-public class MarekTest {
+public class Marek {
 
 }

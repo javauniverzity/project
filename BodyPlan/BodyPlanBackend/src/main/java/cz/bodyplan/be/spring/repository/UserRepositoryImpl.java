@@ -14,7 +14,8 @@ import cz.bodyplan.web.vo.dto.User;
 
 @Repository
 @Transactional(readOnly = true)
-public class UserRepositoryImpl extends Template<User> implements UserRepository {
+public class UserRepositoryImpl extends Template<User> implements
+		UserRepository {
 
 	/**
 	 * vytvoreni uzivatele
@@ -42,11 +43,16 @@ public class UserRepositoryImpl extends Template<User> implements UserRepository
 		if (username == null || "".equals(username)) {
 			return null;
 		}
-		final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-		// final DetachedCriteria crit = DetachedCriteria.forClass(User.class).add(Restrictions.eq("username", username));
-		final CriteriaQuery<User> crit = criteriaBuilder.createQuery(User.class);
+		final CriteriaBuilder criteriaBuilder = entityManager
+				.getCriteriaBuilder();
+		// final DetachedCriteria crit =
+		// DetachedCriteria.forClass(User.class).add(Restrictions.eq("username",
+		// username));
+		final CriteriaQuery<User> crit = criteriaBuilder
+				.createQuery(User.class);
 		final Root<User> users = crit.from(User.class);
-		crit.select(users).where(criteriaBuilder.equal(users.get("username"), username));
+		crit.select(users).where(
+				criteriaBuilder.equal(users.get("username"), username));
 
 		final List<User> results = findByCriteria(crit);
 		if (results.size() != 0) {
@@ -60,9 +66,12 @@ public class UserRepositoryImpl extends Template<User> implements UserRepository
 	 */
 	@Override
 	public List<User> getListOfUsers() {
-		final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-		final CriteriaQuery<User> createQuery = criteriaBuilder.createQuery(User.class);
-		final CriteriaQuery<User> select = createQuery.select(createQuery.from(User.class));
+		final CriteriaBuilder criteriaBuilder = entityManager
+				.getCriteriaBuilder();
+		final CriteriaQuery<User> createQuery = criteriaBuilder
+				.createQuery(User.class);
+		final CriteriaQuery<User> select = createQuery.select(createQuery
+				.from(User.class));
 		return findByCriteria(select);
 	}
 
@@ -80,11 +89,11 @@ public class UserRepositoryImpl extends Template<User> implements UserRepository
 		if (id == null) {
 			return null;
 		}
-		// final DetachedCriteria crit = DetachedCriteria.forClass(User.class).add(Restrictions.eq("id", id));
+		final CriteriaBuilder criteriaBuilder = entityManager
+				.getCriteriaBuilder();
 
-		final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-		// final DetachedCriteria crit = DetachedCriteria.forClass(User.class).add(Restrictions.eq("username", username));
-		final CriteriaQuery<User> crit = criteriaBuilder.createQuery(User.class);
+		final CriteriaQuery<User> crit = criteriaBuilder
+				.createQuery(User.class);
 		final Root<User> users = crit.from(User.class);
 		crit.select(users).where(criteriaBuilder.equal(users.get("id"), id));
 

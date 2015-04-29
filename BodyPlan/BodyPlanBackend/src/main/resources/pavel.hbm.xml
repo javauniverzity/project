@@ -3,15 +3,13 @@
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping default-lazy="false">
-	<class name="cz.bodyplan.web.vo.dto.David" table="DAVID_TABLE" dynamic-update="true">
+	<class name="cz.bodyplan.web.vo.dto.Pavel" table="PAVEL_TABLE" dynamic-update="true">
 
 		<id name="id" column="ID" type="java.lang.Long" unsaved-value="null">
-			<!-- <column name="ID" not-null="true" ></column> -->
 			<generator class="identity" />
 		</id>
 
-		
-		<property name="result" column="RESULT_COLUMN"/>
+		<property name="result" column="RESULT_COLUMN" />
 
 	</class>
 </hibernate-mapping>

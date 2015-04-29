@@ -1,4 +1,4 @@
-package Pinger;
+package cz.bodyplan.web.spring.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;

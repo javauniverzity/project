@@ -8,19 +8,14 @@
 
 <html>
 <head>
-</head>
-<body>
-<strong>vitej: ${user.username}</strong>
-
-<a href="index.html?userId=1">edit</a><br/>
-
-<form:form commandName="user" action="editUser.html">
-	<form:input path="firstName"/><br/>
-	<form:input path="lastName"/>
-	<form:button>submit</form:button>
-
-</form:form>
-<br>
-<a href="moje.html">MAREK</a>
-</body>
+</head>		
+	<body>	
+		Edituj: ${marek.result} ID: ${marek.id}
+		<form:form commandName="marek" action="editujMarek.html">
+			<form:input path="result"/><br/>
+			<form:button>submit</form:button>
+		</form:form>
+		<br>
+		<a href="seznamMarek.html">Seznam</a>
+	</body>
 </html>
