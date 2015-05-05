@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false">
+	<class name="cz.bodyplan.web.vo.dto.Database" table="DATABASE_TABLE" dynamic-update="true">
+
+		<id name="id" column="ID" type="long">
+			<!-- <column name="ID" not-null="true" ></column> -->
+			<generator class="identity" />
+		</id>		
+	
+
+		<property name="id" column="ID" />
+		<property name="productName" column="PRODUCT_NAME" />
+		<property name="description" column="DESCRIPTION" />
+		<property name="image" column= "IMAGE"/>
+		<property name="price" column="PRICE" />
+		<property name="category" column="CATEGORY"></property>
+
+
+
+	</class>
+</hibernate-mapping>
