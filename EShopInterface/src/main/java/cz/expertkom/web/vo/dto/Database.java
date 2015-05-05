@@ -1,41 +1,59 @@
 package cz.expertkom.web.vo.dto;
 
 public class Database {
-	private long id;
-	private String ProductName;
-	private String Description;
-	private int Price;
-	private int Category;
-	//private final file(); 
-	
-	public long getId() {
+	private Long id;
+	private String productname;
+	private String category;
+	private String description;
+	private String image;
+	private Integer price;
+
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+
+	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getProductName() {
-		return ProductName;
+
+	public String getProductname() {
+		return productname;
 	}
-	public void setProductName(String productName) {
-		ProductName = productName;
+
+	public void setProductname(String productname) {
+		this.productname = productname;
 	}
 	public String getDescription() {
-		return Description;
+		return description;
 	}
+
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
-	public int getPrice() {
-		return Price;
+
+	public String getCategory() {
+		return category;
 	}
-	public void setPrice(int price) {
-		Price = price;
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
-	public int getCategory() {
-		return Category;
+
+	public String getImage() {
+		return image;
 	}
-	public void setCategory(int category) {
-		Category = category;
+
+	public void setImage(String image) {
+		this.image = image;
 	}
+
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+	
+	// TODO pøepsala jsem Davidovu tøídu Database, aby sedìla se všemi hotovými repository a service, jetsli nìco, klidnì pøepsat zpátky
 }
