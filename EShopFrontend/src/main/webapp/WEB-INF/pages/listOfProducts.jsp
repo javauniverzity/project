@@ -31,7 +31,7 @@
 					<img alt="" src="img/${p.image}">
 					${p.description}<br>
 					cena: ${p.price} kc,-
-					<a href="adToBasket.html?id=${p.id}">
+					<a href="addToBasket?id=${p.id}">
 						<div class="add">
 							Pridat do kosiku						
 						</div>

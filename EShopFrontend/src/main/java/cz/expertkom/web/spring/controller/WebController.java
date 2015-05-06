@@ -29,14 +29,14 @@ public class WebController {
 		List<Database> products = databaseService.getList();
 		model.addAttribute("products", products);
 		User user = new User();
-		model.addAttribute("User", user);
+		model.addAttribute("user", user);
 		return "index";
 	}
 	
 	
 	
 			
-	/* TODO Prozatím k nièemu, pøípravná konstrukce pro admin stránku ke správì databáze pøes web
+	/* TODO Prozatï¿½m k niï¿½emu, pï¿½ï¿½pravnï¿½ konstrukce pro admin strï¿½nku ke sprï¿½vï¿½ databï¿½ze pï¿½es web
 
 	@RequestMapping(value = "adminDatabase", method = RequestMethod.GET)
 	public String adminDatabase(final Model model) {

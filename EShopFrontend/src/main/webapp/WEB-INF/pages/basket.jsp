@@ -9,14 +9,14 @@
 
 <html>
 	<div class="inner">
-		<c:forEach var="b" items="basket">
+		<c:forEach var="b" items="${basket}">
 			${b.productname}
 			${b.price} Kc,-
-		</c:forEach>>
+		</c:forEach>
 		<a>	
 			<div class="add">
-				Zaplatit
+				<a href="order">Zaplatit</a>
 			</div>
 		</a>
 	</div>
-</html>>
+</html>

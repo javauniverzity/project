@@ -40,13 +40,13 @@ public class User implements UserDetails, Serializable {
 	private Set<Authority> authorities;
 	
 
-	private List<Basket> basket;
+	private List<Database> basket;
 	
-	public List<Basket> getBasket() {
+	public List<Database> getBasket() {
 		return basket;
 	}
 
-	public void setBasket(List<Basket> basket) {
+	public void setBasket(List<Database> basket) {
 		this.basket = basket;
 	}
 

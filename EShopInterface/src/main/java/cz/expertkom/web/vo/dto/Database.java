@@ -1,6 +1,12 @@
 package cz.expertkom.web.vo.dto;
 
-public class Database {
+import java.io.Serializable;
+
+public class Database implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1420484628912894636L;
 	private Long id;
 	private String productname;
 	private String category;
@@ -64,5 +70,5 @@ public class Database {
 		this.quantity = quantity;
 	}
 	
-	// TODO pøepsala jsem Davidovu tøídu Database, aby sedìla se všemi hotovými repository a service, jetsli nìco, klidnì pøepsat zpátky
+	// TODO pï¿½epsala jsem Davidovu tï¿½ï¿½du Database, aby sedï¿½la se vï¿½emi hotovï¿½mi repository a service, jetsli nï¿½co, klidnï¿½ pï¿½epsat zpï¿½tky
 }

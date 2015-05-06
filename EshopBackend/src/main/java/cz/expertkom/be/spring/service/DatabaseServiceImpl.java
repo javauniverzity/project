@@ -14,56 +14,53 @@ public class DatabaseServiceImpl implements DatabaseService {
 
 	@Autowired
 	DatabaseRepository repository;
-	
-	
+
 	@Override
 	public Database loadById(Long id) {
-		
+
 		return repository.loadById(id);
 	}
+
 	@Override
 	public Database loadByProductName(String productname) {
-		
+
 		return repository.loadByProductName(productname);
-	} 
-	
-// TODO pokud chcete nechat loadByPrice a podobnì, je tøeba to zavést do repository, takže prosím o domluvu a úpravu
+	}
+
+	// TODO pokud chcete nechat loadByPrice a podobnï¿½, je tï¿½eba to zavï¿½st do
+	// repository, takï¿½e prosï¿½m o domluvu a ï¿½pravu
 	/*
-	@Override
-	public Database loadByPrice(int price) {
-		
-		return null;
-	}
-
-	@Override
-	public Database loadByCategory(String category) {
-		
-		return null;
-	}
-
-	@Override
-	public void create(Database zaznam) {
-		
-		
-	}
-	*/
+	 * @Override public Database loadByPrice(int price) {
+	 * 
+	 * return null; }
+	 * 
+	 * @Override public Database loadByCategory(String category) {
+	 * 
+	 * return null; }
+	 * 
+	 * @Override public void create(Database zaznam) {
+	 * 
+	 * 
+	 * }
+	 */
 	@Override
 	public List<Database> getList() {
-		
+
 		return repository.getListOfProducts();
 	}
-@Override
-public void decreaseQuantity(List<Long> ids) {
-	for (Long id : ids) {
-	Database database = repository.loadById(id);
-	Integer newQuantity = database.getQuantity()-1;
-	database.setQuantity(newQuantity);
-	repository.update(database);
+
+	@Override
+	public void decreaseQuantity(List<Long> ids) {
+		for (Long id : ids) {
+			Database database = repository.loadById(id);
+			if (database.getQuantity() == null) {
+				database.setQuantity(0);
+			}
+			Integer newQuantity = database.getQuantity() - 1;
+			database.setQuantity(newQuantity);
+			repository.update(database);
+		}
+
 	}
-	
-}
-
-
-
 
 }
