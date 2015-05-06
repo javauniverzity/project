@@ -22,6 +22,15 @@
 				<column name="AUTHORITY_ID" not-null="true"></column>
 			</many-to-many>
 		</set>
+		
+		<set name="authorities" table="RELATION_BASKET_AUTHORITY" inverse="false" lazy="false" fetch="select">
+			<key>
+				<column name="USER_ID" not-null="true" />
+			</key>
+			<many-to-many class="cz.expertkom.web.vo.dto.Authority" order-by="name">
+				<column name="BASKET_ID" not-null="true"></column>
+			</many-to-many>
+		</set>
 
 
 

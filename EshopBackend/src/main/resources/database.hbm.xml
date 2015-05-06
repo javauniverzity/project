@@ -17,7 +17,7 @@
 		<property name="image" column= "IMAGE"/>
 		<property name="price" column="PRICE" />
 		<property name="category" column="CATEGORY"></property>
-
+		<property name="quantity" column="QUANTITY"></property>
 
 
 	</class>
