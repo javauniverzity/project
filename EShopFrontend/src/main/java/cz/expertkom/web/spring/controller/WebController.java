@@ -10,22 +10,32 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import cz.expertkom.web.interfaces.service.DatabaseService;
+import cz.expertkom.web.interfaces.service.UserService;
 import cz.expertkom.web.vo.dto.Database;
+import cz.expertkom.web.vo.dto.User;
 
-@SessionAttributes("database")
+@SessionAttributes ({"database", "user"})
 @Controller
 public class WebController {
 
 	@Autowired
 	DatabaseService databaseService;
+	
+	@Autowired
+	UserService userService;
 
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String index(final Model model) {
 		List<Database> products = databaseService.getList();
 		model.addAttribute("products", products);
+		User user = new User();
+		model.addAttribute("User", user);
 		return "index";
 	}
-		
+	
+	
+	
+			
 	/* TODO Prozatím k nièemu, pøípravná konstrukce pro admin stránku ke správì databáze pøes web
 
 	@RequestMapping(value = "adminDatabase", method = RequestMethod.GET)
