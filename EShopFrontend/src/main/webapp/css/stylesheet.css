@@ -1,0 +1,56 @@
+body {
+	margin: 0px;
+	font-family: fantasy;
+}
+.logo a{
+	color: white;
+	text-decoration: none;
+}
+
+
+.nav ul{
+	list-style: none;
+	list-style-position:inherit;
+	display: block;
+	height: 30px;
+	float: right;
+	color:white;
+}
+.nav ul li{
+	display:block;
+	float:left;
+	position: relative;
+	height: 30px;
+}
+.nav ul li ul{
+	display:none;
+}
+.nav ul li:hover >ul{
+	display:table-column;
+	background-color: rgba(0,0,200,0.4);
+	position: absolute; top:32px;
+	height: auto;
+	width: auto;
+}
+.nav ul li:hover >ul li{
+	display:block;
+	height:20px;
+	float:none;
+}
+.sortMenu{
+	width:860px;
+	height:100px;
+	margin:10px;
+	padding:10px;
+	border: 1px solid grey;
+	border-radius:5px;
+}
+.product{
+	height: 200px;
+	width: 200px;
+	background-color: red;
+	margin: 20px;
+	padding: 10px;
+	float:left;
+	
+}

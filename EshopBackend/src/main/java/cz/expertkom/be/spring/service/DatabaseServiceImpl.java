@@ -3,11 +3,13 @@ package cz.expertkom.be.spring.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import cz.expertkom.web.interfaces.repository.DatabaseRepository;
 import cz.expertkom.web.interfaces.service.DatabaseService;
 import cz.expertkom.web.vo.dto.Database;
 
+@Service
 public class DatabaseServiceImpl implements DatabaseService {
 
 	@Autowired

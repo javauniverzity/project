@@ -9,12 +9,12 @@
 
 <html>
 <head>
-<link id="link" rel="stylesheet" href="css/stylesheet.css"
-	type="text/css" />
+
 </head>
 
 
 <body>
-
+<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="listOfProducts.jsp"></jsp:include>
 </body>
 </html>

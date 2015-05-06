@@ -1,0 +1,53 @@
+.header{
+	height: 200px;
+	background-color:rgba(0,0,200,0.4);
+}
+
+.inner{
+	width: 900px;
+	height: auto;
+
+}
+.main{
+	height: 150px;
+}
+.logo{
+	width: auto;
+	height: 150px;
+	float: left;
+	font-family:fantasy;
+	font-size: 100px;
+	font-weight: bolder;
+	
+	color: white;
+	padding-left: 20px;
+	padding-top: 20px;
+	text-align: center;
+	
+}
+.user{
+	width: 300px;
+	height: 150px;
+	
+	float: right;
+	color: white;
+	text-align: right;
+}
+.kosikinner{
+	width: 280px;
+	height: 100px;
+	margin: 10px;
+	margin-left: 20px;
+	margin-right: 0px;
+	background-color: rgba(230,230,230,0.3);
+	border-radius: 5px;
+}
+.nav{
+	width: 900px;
+	height: 50px;
+	border-top: 1px solid grey;
+	
+}
+.content{
+	min-height: 600px;
+}
