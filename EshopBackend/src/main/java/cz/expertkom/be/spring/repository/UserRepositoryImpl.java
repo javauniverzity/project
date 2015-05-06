@@ -10,13 +10,14 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import cz.expertkom.web.interfaces.repository.UserRepository;
+import cz.expertkom.web.vo.dto.Basket;
 import cz.expertkom.web.vo.dto.User;
 
 @Repository
 @Transactional(readOnly = true)
 public class UserRepositoryImpl extends GeneralRepository<User> implements
 		UserRepository {
-
+	
 	/**
 	 * vrati uzivatele podle uzivatelskeho jmena, to je jedinecnne
 	 */
@@ -76,5 +77,13 @@ public class UserRepositoryImpl extends GeneralRepository<User> implements
 		}
 		return null;
 	}
+
+	@Override
+	public List<Basket> getListOfBasket(User user) {
+		// TODO Pro pozdejsi pouziti
+		return null;
+	}
+
+
 
 }

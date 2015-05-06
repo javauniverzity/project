@@ -3,6 +3,7 @@ package cz.expertkom.web.vo.dto;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -37,6 +38,17 @@ public class User implements UserDetails, Serializable {
 	private boolean enabled = true;
 
 	private Set<Authority> authorities;
+	
+
+	private List<Basket> basket;
+	
+	public List<Basket> getBasket() {
+		return basket;
+	}
+
+	public void setBasket(List<Basket> basket) {
+		this.basket = basket;
+	}
 
 	@Override
 	public boolean isEnabled() {
