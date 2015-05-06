@@ -7,6 +7,7 @@ public class Database {
 	private String description;
 	private String image;
 	private Integer price;
+	private Integer quantity;
 
 	public Long getId() {
 		return id;
@@ -53,6 +54,14 @@ public class Database {
 
 	public void setPrice(Integer price) {
 		this.price = price;
+	}
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
 	}
 	
 	// TODO pøepsala jsem Davidovu tøídu Database, aby sedìla se všemi hotovými repository a service, jetsli nìco, klidnì pøepsat zpátky
