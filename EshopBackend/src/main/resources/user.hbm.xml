@@ -23,7 +23,7 @@
 			</many-to-many>
 		</set>
 		
-		<set name="authorities" table="RELATION_BASKET_AUTHORITY" inverse="false" lazy="false" fetch="select">
+		<set name="basket" table="BASKET" inverse="false" lazy="false" fetch="select">
 			<key>
 				<column name="USER_ID" not-null="true" />
 			</key>
