@@ -15,5 +15,9 @@ public interface DatabaseService {
 
     public void create(Database zaznam);
     */
+    
+    void decreaseQuantity (List<Long> ids);
+    
+    
     public List<Database> getList();
 }

@@ -52,6 +52,18 @@ public class DatabaseServiceImpl implements DatabaseService {
 		
 		return repository.getListOfProducts();
 	}
+@Override
+public void decreaseQuantity(List<Long> ids) {
+	for (Long id : ids) {
+	Database database = repository.loadById(id);
+	Integer newQuantity = database.getQuantity()-1;
+	database.setQuantity(newQuantity);
+	repository.update(database);
+	}
+	
+}
+
+
 
 
 }
