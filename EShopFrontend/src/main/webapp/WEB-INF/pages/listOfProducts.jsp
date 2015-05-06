@@ -30,8 +30,12 @@
 					<strong>${p.productname}</strong><br>
 					<img alt="" src="img/${p.image}">
 					${p.description}<br>
-					${p.price}
-					
+					cena: ${p.price} kc,-
+					<a href="adToBasket.html?id=${p.id}">
+						<div class="add">
+							Pridat do kosiku						
+						</div>
+					</a>
 				</div>
 			</a>
 		</c:forEach>
