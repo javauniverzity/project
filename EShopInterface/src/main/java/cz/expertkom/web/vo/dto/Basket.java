@@ -5,7 +5,7 @@ import java.util.List;
 
 
 
-public class Basket extends Database {
+public class Basket extends Product {
 
 
 

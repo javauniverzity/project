@@ -3,7 +3,7 @@
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping default-lazy="false">
-	<class name="cz.expertkom.web.vo.dto.Database" table="DATABASE_TABLE" dynamic-update="true">
+	<class name="cz.expertkom.web.vo.dto.Product" table="PRODUCT_TABLE" dynamic-update="true">
 
 		<id name="id" column="ID" type="long">
 			<!-- <column name="ID" not-null="true" ></column> -->

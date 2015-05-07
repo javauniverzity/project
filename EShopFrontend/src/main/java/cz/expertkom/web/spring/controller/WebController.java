@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import cz.expertkom.web.interfaces.service.DatabaseService;
+import cz.expertkom.web.interfaces.service.ProductService;
 import cz.expertkom.web.interfaces.service.UserService;
-import cz.expertkom.web.vo.dto.Database;
+import cz.expertkom.web.vo.dto.Product;
 import cz.expertkom.web.vo.dto.User;
 
 @SessionAttributes ({"database", "user"})
@@ -19,14 +19,14 @@ import cz.expertkom.web.vo.dto.User;
 public class WebController {
 
 	@Autowired
-	DatabaseService databaseService;
+	ProductService databaseService;
 	
 	@Autowired
 	UserService userService;
 
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String index(final Model model) {
-		List<Database> products = databaseService.getList();
+		List<Product> products = databaseService.getList();
 		model.addAttribute("products", products);
 		User user = new User();
 		model.addAttribute("user", user);

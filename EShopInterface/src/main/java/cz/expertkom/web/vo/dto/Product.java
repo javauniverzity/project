@@ -2,7 +2,7 @@ package cz.expertkom.web.vo.dto;
 
 import java.io.Serializable;
 
-public class Database implements Serializable {
+public class Product implements Serializable {
 	/**
 	 * 
 	 */

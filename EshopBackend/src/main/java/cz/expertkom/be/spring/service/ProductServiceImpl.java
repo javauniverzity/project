@@ -5,24 +5,24 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cz.expertkom.web.interfaces.repository.DatabaseRepository;
-import cz.expertkom.web.interfaces.service.DatabaseService;
-import cz.expertkom.web.vo.dto.Database;
+import cz.expertkom.web.interfaces.repository.ProductRepository;
+import cz.expertkom.web.interfaces.service.ProductService;
+import cz.expertkom.web.vo.dto.Product;
 
 @Service
-public class DatabaseServiceImpl implements DatabaseService {
+public class ProductServiceImpl implements ProductService {
 
 	@Autowired
-	DatabaseRepository repository;
+	ProductRepository repository;
 
 	@Override
-	public Database loadById(Long id) {
+	public Product loadById(Long id) {
 
 		return repository.loadById(id);
 	}
 
 	@Override
-	public Database loadByProductName(String productname) {
+	public Product loadByProductName(String productname) {
 
 		return repository.loadByProductName(productname);
 	}
@@ -44,7 +44,7 @@ public class DatabaseServiceImpl implements DatabaseService {
 	 * }
 	 */
 	@Override
-	public List<Database> getList() {
+	public List<Product> getList() {
 
 		return repository.getListOfProducts();
 	}
@@ -52,7 +52,7 @@ public class DatabaseServiceImpl implements DatabaseService {
 	@Override
 	public void decreaseQuantity(List<Long> ids) {
 		for (Long id : ids) {
-			Database database = repository.loadById(id);
+			Product database = repository.loadById(id);
 			if (database.getQuantity() == null) {
 				database.setQuantity(0);
 			}
