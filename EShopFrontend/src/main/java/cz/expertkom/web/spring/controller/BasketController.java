@@ -26,7 +26,7 @@ public class BasketController {
 	UserService userService;
 
 	@Autowired
-	ProductService databaseService;
+	ProductService productService;
 
 	@RequestMapping(value = "addToBasket", method = RequestMethod.GET)
 	public String addToBasket(final Model model,
@@ -38,7 +38,7 @@ public class BasketController {
 			basket = new ArrayList<Product>();
 			user.setBasket(basket);
 		}
-		Product d = databaseService.loadById(Long.valueOf(productID));
+		Product d = productService.loadById(Long.valueOf(productID));
 		basket.add(d);
 		model.addAttribute("basket", basket);
 		model.addAttribute("user", user);
@@ -65,7 +65,7 @@ public class BasketController {
 		for (Product b : basket) {
 			ids.add(b.getId());
 		}
-		databaseService.decreaseQuantity(ids);
+		productService.decreaseQuantity(ids);
 
 		return "index";
 	}

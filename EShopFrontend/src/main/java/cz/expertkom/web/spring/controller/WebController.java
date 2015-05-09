@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -14,47 +15,47 @@ import cz.expertkom.web.interfaces.service.UserService;
 import cz.expertkom.web.vo.dto.Product;
 import cz.expertkom.web.vo.dto.User;
 
-@SessionAttributes ({"database", "user"})
+@SessionAttributes ({"product", "user"})
 @Controller
 public class WebController {
 
 	@Autowired
-	ProductService databaseService;
+	ProductService productService;
 	
 	@Autowired
 	UserService userService;
 
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String index(final Model model) {
-		List<Product> products = databaseService.getList();
+		List<Product> products = productService.getList();
 		model.addAttribute("products", products);
 		User user = new User();
 		model.addAttribute("user", user);
 		return "index";
 	}
 	
+	@RequestMapping(value = "newProduct", method = RequestMethod.GET)
+	public String newProduct(final Model model) {
+		Product product = new Product();
+		model.addAttribute("product", product);
+		return "newProduct";
+	}
+
+	@RequestMapping(value = "makeProduct", method = RequestMethod.POST)
+	public String makeProduct(@ModelAttribute("product") final Product product) {
+		productService.create(product);
+		return "newProduct";
+	}
 	
+
 	
 			
-	/* TODO Prozat�m k ni�emu, p��pravn� konstrukce pro admin str�nku ke spr�v� datab�ze p�es web
+	/* TODO Prozat�m k ni�emu, p��pravn� konstrukce
 
 	@RequestMapping(value = "adminDatabase", method = RequestMethod.GET)
 	public String adminDatabase(final Model model) {
 		List<Database> products = databaseService.getList();
 		model.addAttribute("products", products);
-		return "adminDatabase";
-	}
-
-	@RequestMapping(value = "newProduct", method = RequestMethod.GET)
-	public String newProduct(final Model model) {
-		Database database = new Database();
-		model.addAttribute("database", database);
-		return "adminDatabase";
-	}
-
-	@RequestMapping(value = "makeProduct", method = RequestMethod.POST)
-	public String makeProduct(@ModelAttribute("database") final Database database) {
-		databaseService.create(database);
 		return "adminDatabase";
 	}
 
