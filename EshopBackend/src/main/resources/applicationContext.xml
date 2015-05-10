@@ -76,7 +76,7 @@
 				<value>authority.hbm.xml</value>
 				<value>user.hbm.xml</value>
 				<value>persistentlogins.hbm.xml</value>
-				<value>database.hbm.xml</value>
+				<value>product.hbm.xml</value>
 			</list>
 		</property>
 		<!-- <property name="packagesToScan" value="net.myproject" /> -->
