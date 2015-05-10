@@ -38,8 +38,8 @@ public class BasketController {
 			basket = new ArrayList<Product>();
 			user.setBasket(basket);
 		}
-		Product d = productService.loadById(Long.valueOf(productID));
-		basket.add(d);
+		Product product = productService.loadById(Long.valueOf(productID));
+		basket.add(product);
 		model.addAttribute("basket", basket);
 		model.addAttribute("user", user);
 
@@ -62,8 +62,8 @@ public class BasketController {
 		List<Long> ids = new ArrayList<Long>();
 		List<Product> basket = user.getBasket();
 
-		for (Product b : basket) {
-			ids.add(b.getId());
+		for (Product product : basket) {
+			ids.add(product.getId());
 		}
 		productService.decreaseQuantity(ids);
 

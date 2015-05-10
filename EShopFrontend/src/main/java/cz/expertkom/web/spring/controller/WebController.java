@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import cz.expertkom.web.interfaces.service.ProductService;
@@ -47,33 +48,18 @@ public class WebController {
 		return "newProduct";
 	}
 	
-
-	
-			
-	/* TODO Prozat�m k ni�emu, p��pravn� konstrukce
-
-	@RequestMapping(value = "adminDatabase", method = RequestMethod.GET)
-	public String adminDatabase(final Model model) {
-		List<Database> products = databaseService.getList();
-		model.addAttribute("products", products);
-		return "adminDatabase";
-	}
-
 	@RequestMapping(value = "editProduct", method = RequestMethod.GET)
-	public String editProduct(final Model model, @RequestParam(required = true, value = "Id") Long Id) {
-		Database database = null;
-		database = databaseService.loadById(Id);
-		model.addAttribute("database", database);
+	public String editProduct(final Model model, @RequestParam("id") String productID) {
+		Product product = productService.loadById(Long.valueOf(productID));
+		model.addAttribute("product", product);
 		return "editProduct";
 	}
-
+	
 	@RequestMapping(value = "editingProduct", method = RequestMethod.POST)
-	public String editingProduct(@ModelAttribute("product") final Database database) {
-
-		databaseService.update(database);
+	public String editingProduct(@ModelAttribute("product") final Product product) {
+		productService.update(product);		
 		return "editProduct";
 	}
-	*/
 
 	@RequestMapping(value = "error", method = RequestMethod.GET)
 	public String error() {
