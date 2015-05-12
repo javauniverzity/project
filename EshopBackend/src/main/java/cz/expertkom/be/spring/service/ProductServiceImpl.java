@@ -27,8 +27,7 @@ public class ProductServiceImpl implements ProductService {
 		return repository.loadByProductName(productname);
 	}
 
-	// TODO pokud chcete nechat loadByPrice a podobn�, je t�eba to zav�st do
-	// repository, tak�e pros�m o domluvu a �pravu
+
 	/*
 	 * @Override public Database loadByPrice(int price) {
 	 * 
@@ -61,6 +60,12 @@ public class ProductServiceImpl implements ProductService {
 			repository.update(database);
 		}
 
+	}
+
+	@Override
+	public void create(Product product) {
+		repository.create(product);
+		
 	}
 
 }

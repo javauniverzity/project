@@ -55,12 +55,12 @@ public class WebController {
 		return "editProduct";
 	}
 	
-	@RequestMapping(value = "editingProduct", method = RequestMethod.POST)
+/*	@RequestMapping(value = "editingProduct", method = RequestMethod.POST)
 	public String editingProduct(@ModelAttribute("product") final Product product) {
 		productService.update(product);		
 		return "editProduct";
 	}
-
+*/
 	@RequestMapping(value = "error", method = RequestMethod.GET)
 	public String error() {
 		return "index";

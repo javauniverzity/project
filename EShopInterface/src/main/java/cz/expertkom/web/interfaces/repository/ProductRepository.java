@@ -10,5 +10,5 @@ public interface ProductRepository extends GeneralRepository<Product> {
 	Product loadByProductName(String productname);
 
 	List<Product> getListOfProducts();
-	// TODO pøepsáno, aby sedìlo 
+	
 }

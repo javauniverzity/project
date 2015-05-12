@@ -73,7 +73,6 @@ public class ProductRepositoryImpl extends GeneralRepository<Product> implements
 					.from(Product.class));
 			return findByCriteria(select);
 	}
-	/* TODO trochu upraveno + pøidány hotové základní loadById, loadByProductName a getListOfProducts
-	 * */
+
 	 
 }

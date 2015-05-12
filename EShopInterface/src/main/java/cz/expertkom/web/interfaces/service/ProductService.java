@@ -9,13 +9,12 @@ public interface ProductService {
 	
     public Product loadById(Long id);
     public Product loadByProductName(String productname);
-    /* TODO poopraveno ale doèasnì v komentáøi. viz ServiceImpl
+    /* 
     public Database loadByPrice(Integer price);
     public Database loadByCategory(String category);
-
-    public void create(Database zaznam);
-    */
-    
+	*/
+    public void create(Product product);
+       
     void decreaseQuantity (List<Long> ids);
     
     

@@ -80,7 +80,7 @@ public class UserRepositoryImpl extends GeneralRepository<User> implements
 
 	@Override
 	public List<Basket> getListOfBasket(User user) {
-		// TODO Pro pozdejsi pouziti
+		// TODO 
 		return null;
 	}
 
