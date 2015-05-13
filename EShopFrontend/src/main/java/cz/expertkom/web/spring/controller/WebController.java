@@ -45,7 +45,7 @@ public class WebController {
 	@RequestMapping(value = "makeProduct", method = RequestMethod.POST)
 	public String makeProduct(@ModelAttribute("product") final Product product) {
 		productService.create(product);
-		return "newProduct";
+		return "redirect: newProduct";
 	}
 	
 	@RequestMapping(value = "editProduct", method = RequestMethod.GET)
