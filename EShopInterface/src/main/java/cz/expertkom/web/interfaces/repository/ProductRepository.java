@@ -10,5 +10,7 @@ public interface ProductRepository extends GeneralRepository<Product> {
 	Product loadByProductName(String productname);
 
 	List<Product> getListOfProducts();
+
+	List<Product> searchProduct(String query);
 	
 }

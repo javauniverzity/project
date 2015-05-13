@@ -9,6 +9,9 @@ public interface ProductService {
 	
     public Product loadById(Long id);
     public Product loadByProductName(String productname);
+    
+    public List<Product> searchProduct(String query);
+    
     /* 
     public Database loadByPrice(Integer price);
     public Database loadByCategory(String category);
