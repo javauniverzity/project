@@ -6,9 +6,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html>
-<head>
 
-<title>Nový produkt</title>
+
+<head>
+<link id="link" rel="stylesheet" href="css/stylesheet.css"
+	type="text/css" />
+<link rel="stylesheet" href="css/template.css" type="text/css" />
 </head>
 <body>	
 

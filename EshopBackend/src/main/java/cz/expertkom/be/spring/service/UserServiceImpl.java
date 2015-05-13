@@ -59,7 +59,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional(readOnly = false)
 	public void remove(final User user) {
-
 		userRepository.remove(user);
 	}
 

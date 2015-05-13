@@ -1,7 +1,5 @@
 package cz.expertkom.web.spring.controller;
 
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,20 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
-
-
-
-
-
 
 import cz.expertkom.web.interfaces.service.ProductService;
-import cz.expertkom.web.interfaces.service.UserService;
 import cz.expertkom.web.vo.dto.Product;
-import cz.expertkom.web.vo.dto.User;
-
-
 
 @Controller
 public class EditProductsController {
@@ -46,6 +33,6 @@ public class EditProductsController {
 	public String edProduct(@ModelAttribute(value="id") final Product product, Model model){
 		model.addAttribute("product", product);
 		productService.update(product);
-		return "redirect: editProducts";
+		return "redirect:editProducts";
 	}
 }

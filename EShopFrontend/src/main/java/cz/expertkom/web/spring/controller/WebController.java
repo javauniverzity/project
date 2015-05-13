@@ -45,7 +45,7 @@ public class WebController {
 	@RequestMapping(value = "makeProduct", method = RequestMethod.POST)
 	public String makeProduct(@ModelAttribute("product") final Product product) {
 		productService.create(product);
-		return "redirect: newProduct";
+		return "redirect:newProduct";
 	}
 	
 	@RequestMapping(value = "editProduct", method = RequestMethod.GET)
@@ -57,7 +57,7 @@ public class WebController {
 	
 /*	@RequestMapping(value = "editingProduct", method = RequestMethod.POST)
 	public String editingProduct(@ModelAttribute("product") final Product product) {
-		productService.update(product);		
+//		productService.update(product);		
 		return "editProduct";
 	}
 */

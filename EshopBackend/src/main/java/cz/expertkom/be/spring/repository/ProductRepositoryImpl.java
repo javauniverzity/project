@@ -5,19 +5,22 @@ import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+
 import org.springframework.stereotype.Repository;
+
 import cz.expertkom.web.interfaces.repository.ProductRepository;
 import cz.expertkom.web.vo.dto.Product;
 
 @Repository
-public class ProductRepositoryImpl extends GeneralRepository<Product> implements ProductRepository {
-	
+public class ProductRepositoryImpl extends GeneralRepository<Product> implements
+		ProductRepository {
+
 	/**
-	 *  loadById pro pozdìjší použití
-	 *  */
-	
+	 * loadById pro pozdï¿½jï¿½ï¿½ pouï¿½itï¿½
+	 * */
+
 	@Override
-	public Product loadById(Long id) {		 
+	public Product loadById(Long id) {
 		if (id == null) {
 			return null;
 		}
@@ -27,7 +30,8 @@ public class ProductRepositoryImpl extends GeneralRepository<Product> implements
 		final CriteriaQuery<Product> crit = criteriaBuilder
 				.createQuery(Product.class);
 		final Root<Product> products = crit.from(Product.class);
-		crit.select(products).where(criteriaBuilder.equal(products.get("id"), id));
+		crit.select(products).where(
+				criteriaBuilder.equal(products.get("id"), id));
 
 		final List<Product> results = findByCriteria(crit);
 		if (results.size() != 0) {
@@ -35,44 +39,68 @@ public class ProductRepositoryImpl extends GeneralRepository<Product> implements
 		}
 		return null;
 	}
-	/** loadByProductName
-	 * pro pozdìjší použití
+
+	/**
+	 * loadByProductName pro pozdï¿½jï¿½ï¿½ pouï¿½itï¿½
 	 * 
 	 * */
 
 	@Override
 	public Product loadByProductName(String productname) {
-			if (productname == null || "".equals(productname)) {
-				return null;
-			}
-			final CriteriaBuilder criteriaBuilder = entityManager
-					.getCriteriaBuilder();
-			final CriteriaQuery<Product> crit = criteriaBuilder
-					.createQuery(Product.class);
-			final Root<Product> products = crit.from(Product.class);
-			crit.select(products).where(
-					criteriaBuilder.equal(products.get("productname"), productname));
-
-			final List<Product> results = findByCriteria(crit);
-			if (results.size() != 0) {
-				return results.get(0);
-			}
+		if (productname == null || "".equals(productname)) {
 			return null;
 		}
-	
-	/** 
-	 * Pro výpis produktù
+		final CriteriaBuilder criteriaBuilder = entityManager
+				.getCriteriaBuilder();
+		final CriteriaQuery<Product> crit = criteriaBuilder
+				.createQuery(Product.class);
+		final Root<Product> products = crit.from(Product.class);
+		crit.select(products)
+				.where(criteriaBuilder.equal(products.get("productname"),
+						productname));
+
+		final List<Product> results = findByCriteria(crit);
+		if (results.size() != 0) {
+			return results.get(0);
+		}
+		return null;
+	}
+
+	/**
+	 * Pro vï¿½pis produktï¿½
 	 */
 	@Override
 	public List<Product> getListOfProducts() {
-			final CriteriaBuilder criteriaBuilder = entityManager
-					.getCriteriaBuilder();
-			final CriteriaQuery<Product> createQuery = criteriaBuilder
-					.createQuery(Product.class);
-			final CriteriaQuery<Product> select = createQuery.select(createQuery
-					.from(Product.class));
-			return findByCriteria(select);
+		final CriteriaBuilder criteriaBuilder = entityManager
+				.getCriteriaBuilder();
+		final CriteriaQuery<Product> createQuery = criteriaBuilder
+				.createQuery(Product.class);
+		final CriteriaQuery<Product> select = createQuery.select(createQuery
+				.from(Product.class));
+		return findByCriteria(select);
 	}
 
-	 
+	@Override
+	public List<Product> searchProduct(String query) {
+		if (query == null) {
+			return null;
+		}
+		final CriteriaBuilder criteriaBuilder = entityManager
+				.getCriteriaBuilder();
+
+		final CriteriaQuery<Product> crit = criteriaBuilder
+				.createQuery(Product.class);
+		final Root<Product> products = crit.from(Product.class);
+		crit.select(products).where(
+				criteriaBuilder.or(
+						criteriaBuilder.like(products.get("productname"), "%"
+								+ query + "%"),
+						criteriaBuilder.like(products.get("description"), "%"
+								+ query + "%")));
+
+		final List<Product> results = findByCriteria(crit);
+
+		return results;
+	}
+
 }

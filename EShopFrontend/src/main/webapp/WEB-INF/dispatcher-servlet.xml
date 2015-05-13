@@ -49,7 +49,7 @@
 		<property name="accessDecisionManager" ref="accessDecisionManager" />
 		<property name="securityMetadataSource">
 			<security:filter-security-metadata-source>
-				<security:intercept-url pattern="/monitoring*"
+				<security:intercept-url pattern="/editProducts*"
 					access="ROLE_ADMIN" />
 				<security:intercept-url pattern="/home*"
 					access="ROLE_OPERATOR" />
@@ -156,7 +156,7 @@
 
 	<bean id="successHandler"
 		class="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler">
-		<property name="defaultTargetUrl" value="/home" /> <!-- which is the default value -->
+		<property name="defaultTargetUrl" value="/index" /> <!-- which is the default value -->
 	</bean>
 	<bean id="failureHandler"
 		class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">

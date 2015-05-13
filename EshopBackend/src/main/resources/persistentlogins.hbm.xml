@@ -3,7 +3,7 @@
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping default-lazy="false">
-	<class name="cz.expertkom.web.vo.dto.PersistentLogins" table="PERSISTENT_LOGINS_TABLE">
+	<class name="cz.expertkom.web.vo.dto.PersistentLogins" table="PERSISTENT_LOGINS">
 		<id name="series" unsaved-value="null">
 			<column name="SERIES" not-null="true" length="128"></column>
 		</id>

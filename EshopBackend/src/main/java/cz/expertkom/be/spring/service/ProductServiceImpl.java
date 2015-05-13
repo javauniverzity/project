@@ -71,6 +71,11 @@ public class ProductServiceImpl implements ProductService {
 	public void update(Product product) {
 		repository.update(product);
 	}
+
+	@Override
+	public List<Product> searchProduct(String query) {
+		return repository.searchProduct(query);
+	}
 }
 
 

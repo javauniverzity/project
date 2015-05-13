@@ -2,6 +2,13 @@ body {
 	margin: 0px;
 	font-family: fantasy;
 }
+form {
+	margin: 20px;
+}
+
+button {
+	margin-top: 10px;	
+}
 .logo a{
 	color: white;
 	text-decoration: none;

@@ -14,7 +14,7 @@
 		<property name="password" column="PASSWORD" />
 		<property name="username" column="USERNAME" not-null="true"  unique="true" />
 		
-		<set name="authorities" table="RELATION_USER_AUTHORITY" inverse="false" lazy="false" fetch="select" cascade="all">
+		<set name="authorities" table="RELATION_USER_AUTHORITY" inverse="false" lazy="false" fetch="select" >
 			<key>
 				<column name="USER_ID" not-null="true" />
 			</key>
@@ -23,14 +23,14 @@
 			</many-to-many>
 		</set>
 		
-		<set name="basket" table="BASKET" inverse="false" lazy="false" fetch="select">
-			<key>
-				<column name="USER_ID" not-null="true" />
-			</key>
-			<many-to-many class="cz.expertkom.web.vo.dto.Authority" order-by="name">
-				<column name="BASKET_ID" not-null="true"></column>
-			</many-to-many>
-		</set>
+<!-- 		<set name="basket" table="BASKET" inverse="false" lazy="false" fetch="select" > -->
+<!-- 			<key> -->
+<!-- 				<column name="USER_ID" not-null="true" /> -->
+<!-- 			</key> -->
+<!-- 			<many-to-many class="cz.expertkom.web.vo.dto.Authority" order-by="name"> -->
+<!-- 				<column name="BASKET_ID" not-null="true"></column> -->
+<!-- 			</many-to-many> -->
+<!-- 		</set> -->
 
 
 
