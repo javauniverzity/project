@@ -23,6 +23,8 @@ import cz.expertkom.web.interfaces.service.UserService;
 import cz.expertkom.web.vo.dto.Product;
 import cz.expertkom.web.vo.dto.User;
 
+
+
 @Controller
 public class EditProductsController {
 
@@ -31,7 +33,8 @@ public class EditProductsController {
 
 	@RequestMapping(value="editProducts")
 	public String editProducts(final Model model){
-		List<Product> products = productService.getList();
+		List<Product> products = null;
+		products = productService.getList();
 		model.addAttribute("products", products);
 		for(Product p: products){
 			String name = String.valueOf(p.getId());
@@ -42,7 +45,7 @@ public class EditProductsController {
 	@RequestMapping(value = "edProduct", method = {RequestMethod.GET, RequestMethod.POST})
 	public String edProduct(@ModelAttribute(value="id") final Product product, Model model){
 		model.addAttribute("product", product);
-	//	productService.update(product);
-		return "edProduct";
+		productService.update(product);
+		return "redirect: editProducts";
 	}
 }

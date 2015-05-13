@@ -19,4 +19,6 @@ public interface ProductService {
     
     
     public List<Product> getList();
+
+    void update(Product product);
 }
