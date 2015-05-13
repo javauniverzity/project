@@ -28,21 +28,51 @@
 			</form>
 		</div>
 		
-		<c:forEach var="p" items="${products}">
-			<a href="productDetail.html?productId=${p.id}">	
-				<div class="product">
-					<strong>${p.productname}</strong><br>
-					<img alt="" src="img/${p.image}">
-					${p.description}<br>
-					cena: ${p.price} kc,-<br>
-					skladem: ${p.quantity} ks
-					<a href="addToBasket?id=${p.id}">
-						<div class="add">
-							Pridat do kosiku						
-						</div>
-					</a>
-				</div>
-			</a>
-		</c:forEach>
+		<table>	
+			<tr>
+				<th>ID</th>
+				<th>Nazev</th>
+				<th>Popis</th>
+				<th>Obr</th>
+				<th>Cena</th>
+				<th>Mnozstvi</th>
+				<th></th>
+			</tr>
+			<c:forEach var="p" items="${products}">
+				<tr>
+					<td>${p.id}</td>
+					<td>${p.productname}</td>
+					<td>${p.description}</td>
+					<td>${p.image}</td>
+					<td>${p.price}</td>
+					<td>${p.quantity}</td> 
+					<td></td>				
+				</tr>	
+				<tr>
+					<form:form commandName="${p.id}" action="edProduct?id=${p.id}">
+						<td>
+						</td>
+						<td>
+							<form:input path="productname"></form:input>
+						</td>
+						<td>
+							<form:input path="description"></form:input>
+						</td>
+						<td>
+							<form:input path="image"></form:input>
+						</td>
+						<td>
+							<form:input path="price"></form:input>
+						</td>
+						<td>
+							<form:input path="quantity"></form:input>
+						</td>
+						<td>
+							<form:button>Edit</form:button>
+						</td>
+					</form:form>
+				</tr>			
+			</c:forEach>
+		</table>
 	</div>
 </html>
