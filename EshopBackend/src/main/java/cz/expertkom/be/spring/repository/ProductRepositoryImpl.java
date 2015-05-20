@@ -123,9 +123,7 @@ public class ProductRepositoryImpl extends GeneralRepository<Product> implements
 				crit.select(products).orderBy(criteriaBuilder.desc(products.get("price")));
 			}			
 		}	
-		
-//		crit.select(products).orderBy(criteriaBuilder.asc(products.get("productname")));
-		
+				
 		final List<Product> results = findByCriteria(crit);
 		
 		return results;
