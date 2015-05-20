@@ -71,12 +71,9 @@ public class ProductRepositoryImpl extends GeneralRepository<Product> implements
 	 */
 	@Override
 	public List<Product> getListOfProducts() {
-		final CriteriaBuilder criteriaBuilder = entityManager
-				.getCriteriaBuilder();
-		final CriteriaQuery<Product> createQuery = criteriaBuilder
-				.createQuery(Product.class);
-		final CriteriaQuery<Product> select = createQuery.select(createQuery
-				.from(Product.class));
+		final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		final CriteriaQuery<Product> createQuery = criteriaBuilder.createQuery(Product.class);
+		final CriteriaQuery<Product> select = createQuery.select(createQuery.from(Product.class));		
 		return findByCriteria(select);
 	}
 
@@ -85,12 +82,11 @@ public class ProductRepositoryImpl extends GeneralRepository<Product> implements
 		if (query == null) {
 			return null;
 		}
-		final CriteriaBuilder criteriaBuilder = entityManager
-				.getCriteriaBuilder();
+		final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 
-		final CriteriaQuery<Product> crit = criteriaBuilder
-				.createQuery(Product.class);
+		final CriteriaQuery<Product> crit = criteriaBuilder.createQuery(Product.class);
 		final Root<Product> products = crit.from(Product.class);
+		
 		crit.select(products).where(
 				criteriaBuilder.or(
 						criteriaBuilder.like(products.get("productname"), "%"
@@ -102,5 +98,40 @@ public class ProductRepositoryImpl extends GeneralRepository<Product> implements
 
 		return results;
 	}
+	
+	
+
+	
+	@Override
+	public List<Product> sorter(String sortBy, String sortHow) {
+		
+		final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		
+		final CriteriaQuery<Product> crit = criteriaBuilder.createQuery(Product.class);
+		final Root<Product> products = crit.from(Product.class);
+		
+		if (sortBy.equals("productname")) {
+			if (sortHow.equals("asc")) {
+				crit.select(products).orderBy(criteriaBuilder.asc(products.get("productname")));
+			} else {
+				crit.select(products).orderBy(criteriaBuilder.desc(products.get("productname")));
+			}
+		} else if (sortBy.equals("price")) {
+			if (sortHow.equals("asc")) {
+				crit.select(products).orderBy(criteriaBuilder.asc(products.get("price")));
+			} else {
+				crit.select(products).orderBy(criteriaBuilder.desc(products.get("price")));
+			}			
+		}	
+		
+//		crit.select(products).orderBy(criteriaBuilder.asc(products.get("productname")));
+		
+		final List<Product> results = findByCriteria(crit);
+		
+		return results;
+	}
+	
+	
+
 
 }

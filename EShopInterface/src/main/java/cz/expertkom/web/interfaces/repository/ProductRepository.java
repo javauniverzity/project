@@ -13,4 +13,6 @@ public interface ProductRepository extends GeneralRepository<Product> {
 
 	List<Product> searchProduct(String query);
 	
+	List<Product> sorter(String sortBy, String sortHow);
+	
 }

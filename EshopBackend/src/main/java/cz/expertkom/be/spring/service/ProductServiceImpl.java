@@ -76,6 +76,11 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> searchProduct(String query) {
 		return repository.searchProduct(query);
 	}
+
+	@Override
+	public List<Product> sorter(String sortBy, String sortHow) {
+		return repository.sorter(sortBy, sortHow);
+	}
 }
 
 

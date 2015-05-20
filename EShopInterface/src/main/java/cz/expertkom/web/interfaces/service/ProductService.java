@@ -12,6 +12,8 @@ public interface ProductService {
     
     public List<Product> searchProduct(String query);
     
+    public List<Product> sorter(String sortBy, String sortHow);
+    
     /* 
     public Database loadByPrice(Integer price);
     public Database loadByCategory(String category);

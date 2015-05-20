@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,33 +33,34 @@ public class WebController {
 		model.addAttribute("user", user);
 		return "index";
 	}
-	
-	@RequestMapping(value = "newProduct", method = RequestMethod.GET)
-	public String newProduct(final Model model) {
-		Product product = new Product();
-		model.addAttribute("product", product);
-		return "newProduct";
+		
+	@RequestMapping(value = "searchProduct", method = RequestMethod.GET)
+	public String searchProduct(final Model model, @RequestParam("searchProduct") String searchProduct) {
+		List<Product> products = productService.searchProduct(searchProduct);
+		model.addAttribute("products", products);
+		return "index";
 	}
+	
+	
+	
+	
+	@RequestMapping(value = "sorter", method = RequestMethod.GET)
+	public String sorter(final Model model,
+			@RequestParam("sortBy") String sortBy,
+			@RequestParam("sortHow") String sortHow) {
+		
+		List<Product> products = productService.sorter(sortBy, sortHow);
+		
+		model.addAttribute("products", products);
+		return "index";
+	}
+	
+	
+	
+	
+	
 
-	@RequestMapping(value = "makeProduct", method = RequestMethod.POST)
-	public String makeProduct(@ModelAttribute("product") final Product product) {
-		productService.create(product);
-		return "redirect:newProduct";
-	}
 	
-	@RequestMapping(value = "editProduct", method = RequestMethod.GET)
-	public String editProduct(final Model model, @RequestParam("id") String productID) {
-		Product product = productService.loadById(Long.valueOf(productID));
-		model.addAttribute("product", product);
-		return "editProduct";
-	}
-	
-/*	@RequestMapping(value = "editingProduct", method = RequestMethod.POST)
-	public String editingProduct(@ModelAttribute("product") final Product product) {
-//		productService.update(product);		
-		return "editProduct";
-	}
-*/
 	@RequestMapping(value = "error", method = RequestMethod.GET)
 	public String error() {
 		return "index";
