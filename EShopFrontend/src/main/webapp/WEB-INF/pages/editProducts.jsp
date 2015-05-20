@@ -33,6 +33,7 @@
 				<th>ID</th>
 				<th>Nazev</th>
 				<th>Popis</th>
+				<th>Kategorie</th>
 				<th>Obr</th>
 				<th>Cena</th>
 				<th>Mnozstvi</th>
@@ -43,6 +44,7 @@
 					<td>${p.id}</td>
 					<td>${p.productname}</td>
 					<td>${p.description}</td>
+					<td>${p.category}</td>
 					<td>${p.image}</td>
 					<td>${p.price}</td>
 					<td>${p.quantity}</td> 
@@ -56,7 +58,10 @@
 							<form:input path="productname"></form:input>
 						</td>
 						<td>
-							<form:input path="description"></form:input>
+							<form:textarea path="description"></form:textarea>
+						</td>
+						<td>
+							<form:input path="category"></form:input>
 						</td>
 						<td>
 							<form:input path="image"></form:input>

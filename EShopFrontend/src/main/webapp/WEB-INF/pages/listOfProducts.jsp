@@ -11,7 +11,7 @@
 	<div class="inner">
 		<div class="sortMenu">
 			radit dle:
-			<form:form action="index.html" method="GET">	
+			<form:form action="sorter.html" method="GET">	
 				<select name="sortBy">
 					<option value="price">ceny</option>
 					<option value="productname">nazvu</option>
@@ -20,9 +20,9 @@
 					<option value="asc">vzestupne</option>
 					<option value="desc">sestupne</option>
 				</select>
-				<input type="submit">
-			</form:form>
-			<form action="index.html" method="get">
+				<input type="submit" value="Serad">
+			</form:form>			
+			<form action="searchProduct.html" method="get">
 				<input type="text" name="searchProduct">
 				<input type="submit" value="Hledej">
 			</form>
