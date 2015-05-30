@@ -2,17 +2,47 @@ package cz.expertkom.web.vo.dto;
 
 import java.io.Serializable;
 
+/**
+ * Pøedpis povinných vlastností každého produktu
+ */
+
 public class Product implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1420484628912894636L;
+
+	/**
+	 * Jedineèné ID produktu
+	 */
 	private Long id;
+	
+	/**
+	 * Jméno produktu
+	 */
 	private String productname;
+	
+	/**
+	 * Zaøazení do kategorie zboží
+	 */
 	private String category;
+	
+	/**
+	 * Podrobný popis produktu
+	 */
 	private String description;
+	
+	/**
+	 * Fotografie produktu
+	 */
 	private String image;
+
+	/**
+	 * Cena produktu
+	 */
 	private Integer price;
+
+	/**
+	 * Množství produktù na skladì
+	 */
 	private Integer quantity;
 
 	public Long getId() {
@@ -30,6 +60,7 @@ public class Product implements Serializable {
 	public void setProductname(String productname) {
 		this.productname = productname;
 	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -69,6 +100,4 @@ public class Product implements Serializable {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-	
-	// TODO pï¿½epsala jsem Davidovu tï¿½ï¿½du Database, aby sedï¿½la se vï¿½emi hotovï¿½mi repository a service, jetsli nï¿½co, klidnï¿½ pï¿½epsat zpï¿½tky
 }

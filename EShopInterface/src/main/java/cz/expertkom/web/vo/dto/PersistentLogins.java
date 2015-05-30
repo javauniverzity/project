@@ -3,20 +3,23 @@ package cz.expertkom.web.vo.dto;
 import java.util.Date;
 
 /**
- * Data pro zapamatovane prihlaseni
- * 
- * @author Pavel Lukes
- * 
+ * Data pro zapamatované pøihlášení
  */
 
 public class PersistentLogins {
 
+	/**
+	 * Uživatelské jméno
+	 */
 	private String username;
 
 	private String series;
 
 	private String token;
 
+	/**
+	 * Datum posledního pøihlášení uživatele
+	 */
 	private Date last_used;
 
 	public String getUsername() {
@@ -50,5 +53,4 @@ public class PersistentLogins {
 	public void setLast_used(final Date last_used) {
 		this.last_used = last_used;
 	}
-
 }

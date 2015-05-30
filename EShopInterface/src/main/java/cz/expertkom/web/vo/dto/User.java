@@ -9,39 +9,43 @@ import java.util.Set;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
- * Data pro prihlasovani a overovani uzivatele. Jedna se o systemoveho
- * uzivatele
- * 
- * @author Pavel Lukes
- * 
+ * Data pro pøihlašování a ovìøování uživatele. Jedná se o systémovéo uživatele
  */
 
 public class User implements UserDetails, Serializable {
 
-
-
 	private static final long serialVersionUID = 1807419766045433889L;
 
-
+	/**
+	 * Jedineèné ID uživatele
+	 */
 	private Long id;
 
 	/**
-	 * heslo uzivatele
+	 * Uživatelské heslo
 	 */
 	private String password;
 
 	/**
-	 * uzivatelske jmeno, muze byt facebook id nebo emailova adresa
+	 * Uživatelské jméno
 	 */
 	private String username;
 
+	/**
+	 * Je úèet uživatele aktivní?
+	 */
 	private boolean enabled = true;
 
+	/**
+	 * Role uživatele
+	 */
 	private Set<Authority> authorities;
 	
-
+	/**
+	 * Košík pøiøazený uživately
+	 */
 	private List<Product> basket;
-	
+
 	public List<Product> getBasket() {
 		return basket;
 	}
@@ -111,6 +115,4 @@ public class User implements UserDetails, Serializable {
 	public void setId(final Long id) {
 		this.id = id;
 	}
-
-
 }

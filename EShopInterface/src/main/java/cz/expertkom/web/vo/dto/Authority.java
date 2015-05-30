@@ -2,12 +2,22 @@ package cz.expertkom.web.vo.dto;
 
 import org.springframework.security.core.GrantedAuthority;
 
+/**
+ * Data pro pøihlášování administrátora
+ */
+
 public class Authority implements GrantedAuthority {
 
 	private static final long serialVersionUID = 1174595566773972040L;
 
+	/**
+	 * Jedineèné ID administrátora
+	 */
 	private Long id;
 
+	/**
+	 * Username administrátora
+	 */
 	private String name;
 
 	private String description;
@@ -45,5 +55,4 @@ public class Authority implements GrantedAuthority {
 	public String toString() {
 		return "Authority [id=" + id + ", name=" + name + ", description=" + description + "]";
 	}
-
 }
