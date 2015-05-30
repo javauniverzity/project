@@ -15,55 +15,63 @@ import cz.expertkom.web.interfaces.service.UserService;
 import cz.expertkom.web.vo.dto.Product;
 import cz.expertkom.web.vo.dto.User;
 
-@SessionAttributes ({"product", "user"})
+/**
+ * Hlavní controller, který øeší naètení hlavní stránky a produktù podle rùzných
+ * kriterií
+ */
+
+@SessionAttributes({ "product", "user" })
 @Controller
 public class WebController {
 
 	@Autowired
 	ProductService productService;
-	
+
 	@Autowired
 	UserService userService;
 
+	// Hlavní stránka, pøi otevøení naète seznam všech produktù, vytvoøí
+	// unikátního usera a obojí uloží do session
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String index(final Model model) {
+
 		List<Product> products = productService.getList();
 		model.addAttribute("products", products);
+
 		User user = new User();
 		model.addAttribute("user", user);
+
 		return "index";
 	}
-		
+
+	// Fulltext vyhledávání, pøedává parametr searchProduct z formuláøe
+	// do repository CriteriaBuilderu. Výsledný list ukládá do session
 	@RequestMapping(value = "searchProduct", method = RequestMethod.GET)
-	public String searchProduct(final Model model, @RequestParam("searchProduct") String searchProduct) {
+	public String searchProduct(final Model model,
+			@RequestParam("searchProduct") String searchProduct) {
+
 		List<Product> products = productService.searchProduct(searchProduct);
 		model.addAttribute("products", products);
+
 		return "index";
 	}
-	
-	
-	
-	
+
+	// Øadièka produktù, pøedává parametry z formuláøe do repository
+	// CriteriaBuilderu. Výsledný list ukládá do session
 	@RequestMapping(value = "sorter", method = RequestMethod.GET)
 	public String sorter(final Model model,
 			@RequestParam("sortBy") String sortBy,
 			@RequestParam("sortHow") String sortHow) {
-		
+
 		List<Product> products = productService.sorter(sortBy, sortHow);
-		
 		model.addAttribute("products", products);
+
 		return "index";
 	}
-	
-	
-	
-	
-	
 
-	
 	@RequestMapping(value = "error", method = RequestMethod.GET)
 	public String error() {
+
 		return "index";
 	}
-
 }
