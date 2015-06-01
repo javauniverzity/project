@@ -5,15 +5,19 @@ import java.util.List;
 import cz.expertkom.web.vo.dto.User;
 
 /**
- * DAO object for accession the database.
- * 
- * @author Pavel Lukes
- * 
+ * Metody pro repository uživatelù.
  */
+
 public interface UserRepository extends GeneralRepository<User> {
-	
-	
+
+	/**
+	 * Naèti uživatele dle uživatelského jména
+	 */
 	User loadUserByUsername(String username);
 
+	/**
+	 * Naèti seznam všech uživatelù
+	 */
 	List<User> getListOfUsers();
+
 }
