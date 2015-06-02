@@ -11,14 +11,18 @@ import org.springframework.stereotype.Repository;
 import cz.expertkom.web.interfaces.repository.ProductRepository;
 import cz.expertkom.web.vo.dto.Product;
 
+/**
+ * Implementace repository pro produkt
+ * @author David
+ *
+ */
 @Repository
 public class ProductRepositoryImpl extends GeneralRepository<Product> implements
 		ProductRepository {
 
 	/**
-	 * loadById pro pozd�j�� pou�it�
+	 * hledani produktu podle Id
 	 * */
-
 	@Override
 	public Product loadById(Long id) {
 		if (id == null) {
@@ -41,10 +45,8 @@ public class ProductRepositoryImpl extends GeneralRepository<Product> implements
 	}
 
 	/**
-	 * loadByProductName pro pozd�j�� pou�it�
-	 * 
+	 * Hledani produktu podle nazvu produktu
 	 * */
-
 	@Override
 	public Product loadByProductName(String productname) {
 		if (productname == null || "".equals(productname)) {
@@ -67,7 +69,7 @@ public class ProductRepositoryImpl extends GeneralRepository<Product> implements
 	}
 
 	/**
-	 * Pro v�pis produkt�
+	 * Vypis produktu
 	 */
 	@Override
 	public List<Product> getListOfProducts() {
@@ -77,6 +79,9 @@ public class ProductRepositoryImpl extends GeneralRepository<Product> implements
 		return findByCriteria(select);
 	}
 
+	/**
+	 * Vyhledavani produktu podle nazvu ci popisu v db SQL
+	 */
 	@Override
 	public List<Product> searchProduct(String query) {
 		if (query == null) {
@@ -95,13 +100,12 @@ public class ProductRepositoryImpl extends GeneralRepository<Product> implements
 								+ query + "%")));
 
 		final List<Product> results = findByCriteria(crit);
-
 		return results;
 	}
-	
-	
-
-	
+		
+	/**
+	 * Radic produktu 
+	 */
 	@Override
 	public List<Product> sorter(String sortBy, String sortHow) {
 		
@@ -123,13 +127,8 @@ public class ProductRepositoryImpl extends GeneralRepository<Product> implements
 				crit.select(products).orderBy(criteriaBuilder.desc(products.get("price")));
 			}			
 		}	
-				
-		final List<Product> results = findByCriteria(crit);
 		
+		final List<Product> results = findByCriteria(crit);
 		return results;
 	}
-	
-	
-
-
 }

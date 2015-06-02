@@ -11,6 +11,11 @@ import cz.expertkom.web.interfaces.repository.UserRepository;
 import cz.expertkom.web.interfaces.service.UserService;
 import cz.expertkom.web.vo.dto.User;
 
+/**
+ * Implementace povinnych metod pro objekt uzivatel
+ * @author David
+ *
+ */
 @Service
 @Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {

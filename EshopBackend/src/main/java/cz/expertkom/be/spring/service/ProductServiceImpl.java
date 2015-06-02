@@ -9,45 +9,44 @@ import cz.expertkom.web.interfaces.repository.ProductRepository;
 import cz.expertkom.web.interfaces.service.ProductService;
 import cz.expertkom.web.vo.dto.Product;
 
+/**
+ * Implementace povinnych metod pro objekt produkt
+ * @author David
+ *
+ */
 @Service
 public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	ProductRepository repository;
 
+	/**
+	 * Hledani produktu podle Id
+	 */
 	@Override
 	public Product loadById(Long id) {
-
 		return repository.loadById(id);
 	}
 
+	/**
+	 * Hledani produktu podle jmena
+	 */
 	@Override
 	public Product loadByProductName(String productname) {
-
 		return repository.loadByProductName(productname);
 	}
 
-
-	/*
-	 * @Override public Database loadByPrice(int price) {
-	 * 
-	 * return null; }
-	 * 
-	 * @Override public Database loadByCategory(String category) {
-	 * 
-	 * return null; }
-	 * 
-	 * @Override public void create(Database zaznam) {
-	 * 
-	 * 
-	 * }
+	/**
+	 * Dej seznam produktu
 	 */
 	@Override
 	public List<Product> getList() {
-
 		return repository.getListOfProducts();
 	}
 
+	/**
+	 * Snizi mnozstvi produktu na sklade o 1
+	 */
 	@Override
 	public void decreaseQuantity(List<Long> ids) {
 		for (Long id : ids) {
@@ -72,15 +71,19 @@ public class ProductServiceImpl implements ProductService {
 		repository.update(product);
 	}
 
+	/**
+	 * Hleda produkt
+	 */
 	@Override
 	public List<Product> searchProduct(String query) {
 		return repository.searchProduct(query);
 	}
 
+	/**
+	 * Seradi seznam produktu
+	 */
 	@Override
 	public List<Product> sorter(String sortBy, String sortHow) {
 		return repository.sorter(sortBy, sortHow);
 	}
 }
-
-

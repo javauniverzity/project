@@ -10,34 +10,53 @@ import cz.expertkom.web.interfaces.repository.AuthorityRepository;
 import cz.expertkom.web.interfaces.service.AuthorityService;
 import cz.expertkom.web.vo.dto.Authority;
 
+/**
+ * Implementace povinnych metod pro objekt administrator
+ * @author David
+ *
+ */
 @Service
 public class AuthorityServiceImpl implements AuthorityService {
 
-	// private static final Logger logger = Logger.getLogger(AuthorityServiceImpl.class);
 
 	@Autowired
 	AuthorityRepository authorityRepository;
 
+	/**
+	 * Vytvoreni administratora
+	 */
 	@Override
 	public void create(final Authority authority) {
 		authorityRepository.create(authority);
 	}
 
+	/**
+	 * Odstraneni administratora
+	 */
 	@Override
 	public void remove(final Authority authority) {
 		authorityRepository.remove(authority);
 	}
 
+	/**
+	 * Aktualizace administratora
+	 */
 	@Override
 	public void update(final Authority authority) {
 		authorityRepository.update(authority);
 	}
 
+	/**
+	 * Hledani administratora dle Id
+	 */
 	@Override
 	public Authority loadById(final Long authority) {
 		return authorityRepository.loadById(authority);
 	}
 
+	/**
+	 * Dej administratora dle jmena, kdyz neni, tak ho vytvor
+	 */
 	@Override
 	@Transactional(readOnly = false)
 	public Authority getAuthority(final String name) {
@@ -52,7 +71,9 @@ public class AuthorityServiceImpl implements AuthorityService {
 		}
 		return authority;
 	}
-
+/**
+ * Seznam administratoru
+ */
 	@Override
 	public List<Authority> getList() {
 		return authorityRepository.getList();

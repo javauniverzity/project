@@ -12,13 +12,18 @@ import org.springframework.transaction.annotation.Transactional;
 import cz.expertkom.web.interfaces.repository.UserRepository;
 import cz.expertkom.web.vo.dto.User;
 
+/**
+ * Implementace repository uzivatelu
+ * @author David
+ *
+ */
 @Repository
 @Transactional(readOnly = true)
 public class UserRepositoryImpl extends GeneralRepository<User> implements
 		UserRepository {
 	
 	/**
-	 * vrati uzivatele podle uzivatelskeho jmena, to je jedinecnne
+	 * Vrati uzivatele podle uzivatelskeho jmena, to je jedinecnne
 	 */
 	@Override
 	public User loadUserByUsername(final String username) {
@@ -27,9 +32,6 @@ public class UserRepositoryImpl extends GeneralRepository<User> implements
 		}
 		final CriteriaBuilder criteriaBuilder = entityManager
 				.getCriteriaBuilder();
-		// final DetachedCriteria crit =
-		// DetachedCriteria.forClass(User.class).add(Restrictions.eq("username",
-		// username));
 		final CriteriaQuery<User> crit = criteriaBuilder
 				.createQuery(User.class);
 		final Root<User> users = crit.from(User.class);
@@ -44,7 +46,7 @@ public class UserRepositoryImpl extends GeneralRepository<User> implements
 	}
 
 	/**
-	 * vrati vsechny uzivatele systemu
+	 * Vrati vsechny uzivatele systemu
 	 */
 	@Override
 	public List<User> getListOfUsers() {
@@ -57,6 +59,9 @@ public class UserRepositoryImpl extends GeneralRepository<User> implements
 		return findByCriteria(select);
 	}
 
+	/**
+	 * Hledani uzivatelu podle jejich Id
+	 */
 	@Override
 	public User loadById(final Long id) {
 		if (id == null) {
@@ -76,6 +81,4 @@ public class UserRepositoryImpl extends GeneralRepository<User> implements
 		}
 		return null;
 	}
-
-
 }

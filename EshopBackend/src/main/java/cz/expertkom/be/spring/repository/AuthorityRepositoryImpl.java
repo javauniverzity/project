@@ -12,6 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 import cz.expertkom.web.interfaces.repository.AuthorityRepository;
 import cz.expertkom.web.vo.dto.Authority;
 
+/**
+ * Implementace metod repositoru pro administratory
+ * @author David
+ *
+ */
 @Repository("authorityRepository")
 @Transactional(readOnly = true)
 public class AuthorityRepositoryImpl extends GeneralRepository<Authority> implements AuthorityRepository {
@@ -34,6 +39,9 @@ public class AuthorityRepositoryImpl extends GeneralRepository<Authority> implem
 		super.update(authority);
 	}
 
+	/**
+	 * Hledani administratoru podle Id
+	 */
 	@Override
 	public Authority loadById(final Long id) {
 		if (id == null) {
@@ -51,6 +59,9 @@ public class AuthorityRepositoryImpl extends GeneralRepository<Authority> implem
 		return null;
 	}
 
+	/**
+	 * Hledani aministratora podle jmena
+	 */
 	@Override
 	public Authority loadByName(final String name) {
 		if (name == null) {
@@ -68,6 +79,9 @@ public class AuthorityRepositoryImpl extends GeneralRepository<Authority> implem
 		return null;
 	}
 
+	/**
+	 * Seznam administratoru
+	 */
 	@Override
 	public List<Authority> getList() {
 		final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
