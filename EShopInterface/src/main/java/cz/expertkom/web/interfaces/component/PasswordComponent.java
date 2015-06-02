@@ -14,7 +14,7 @@ public interface PasswordComponent {
 	String getRandomPassword();
 
 	/**
-	 * Heslo na základì uživatelskéi jména 
+	 * Heslo na základì uživatelského jména 
 	 */
 	String getMd5Password(User user, String password);
 

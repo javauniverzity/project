@@ -31,7 +31,7 @@ public class BasketController {
 	@Autowired
 	ProductService productService;
 
-	// Vytvoøí košík, pøiøadí ho existujícímu userovi a na zálkladì ID mu
+	// Vytvoøí košík, pøiøadí ho existujícímu uživateli a na základì ID mu
 	// pøiøadí produkt. Vše pošle do session
 	@RequestMapping(value = "addToBasket", method = RequestMethod.GET)
 	public String addToBasket(final Model model,

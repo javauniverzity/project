@@ -6,7 +6,7 @@ import cz.expertkom.web.interfaces.repository.GeneralRepository;
 import cz.expertkom.web.vo.dto.Authority;
 
 /**
- * Pøedpismpovinných metod pro objekt administrátora
+ * Pøedpis povinných metod pro objekt administrátora
  */
 
 public interface AuthorityService extends GeneralRepository<Authority> {

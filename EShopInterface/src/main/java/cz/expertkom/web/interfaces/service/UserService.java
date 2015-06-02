@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import cz.expertkom.web.vo.dto.User;
 
 /**
- * Pøedpis povinných metod pro objekt user
+ * Pøedpis povinných metod pro objekt uživatel
  */
 
 public interface UserService extends UserDetailsService {

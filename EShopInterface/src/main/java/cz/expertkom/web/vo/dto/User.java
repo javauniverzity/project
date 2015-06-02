@@ -9,7 +9,7 @@ import java.util.Set;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
- * Data pro pøihlašování a ovìøování uživatele. Jedná se o systémovéo uživatele
+ * Data pro pøihlašování a ovìøování uživatele. Jedná se o systémového uživatele
  */
 
 public class User implements UserDetails, Serializable {
@@ -42,7 +42,7 @@ public class User implements UserDetails, Serializable {
 	private Set<Authority> authorities;
 	
 	/**
-	 * Košík pøiøazený uživately
+	 * Košík pøiøazený uživateli
 	 */
 	private List<Product> basket;
 

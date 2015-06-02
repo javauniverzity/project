@@ -16,7 +16,7 @@ public interface ProductRepository extends GeneralRepository<Product> {
 	Product loadByProductName(String productname);
 
 	/**
-	 * Naèti seznam všech produktù sytému
+	 * Naèti seznam všech produktù systému
 	 */
 	List<Product> getListOfProducts();
 
@@ -26,7 +26,7 @@ public interface ProductRepository extends GeneralRepository<Product> {
 	List<Product> searchProduct(String query);
 	
 	/**
-	 * Naèti produkty a seøaï je dle požadovných kritérií
+	 * Naèti produkty a seøaï je dle požadovaných kritérií
 	 */
 	List<Product> sorter(String sortBy, String sortHow);
 	

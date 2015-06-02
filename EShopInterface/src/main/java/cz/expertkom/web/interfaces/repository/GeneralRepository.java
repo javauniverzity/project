@@ -22,7 +22,7 @@ public interface GeneralRepository<T extends Object> {
 	void update(T object);
 
 	/**
-	 * Naèti objekz dle jeho unikátního ID
+	 * Naèti objekt dle jeho unikátního ID
 	 */
 	T loadById(Long id);
 

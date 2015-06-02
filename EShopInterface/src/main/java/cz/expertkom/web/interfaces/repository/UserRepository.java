@@ -5,7 +5,7 @@ import java.util.List;
 import cz.expertkom.web.vo.dto.User;
 
 /**
- * Metody pro repository uživatelù.
+ * Metody pro repository uživatelù
  */
 
 public interface UserRepository extends GeneralRepository<User> {
