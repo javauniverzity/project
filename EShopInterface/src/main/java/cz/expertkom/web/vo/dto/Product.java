@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 /**
  * Pøedpis povinných vlastností každého produktu
+ * 
+ * @author Honza
  */
 
 public class Product implements Serializable {
@@ -14,22 +16,22 @@ public class Product implements Serializable {
 	 * Jedineèné ID produktu
 	 */
 	private Long id;
-	
+
 	/**
 	 * Jméno produktu
 	 */
 	private String productname;
-	
+
 	/**
 	 * Zaøazení do kategorie zboží
 	 */
 	private String category;
-	
+
 	/**
 	 * Podrobný popis produktu
 	 */
 	private String description;
-	
+
 	/**
 	 * Fotografie produktu
 	 */
@@ -49,7 +51,7 @@ public class Product implements Serializable {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(final Long id) {
 		this.id = id;
 	}
 
@@ -57,7 +59,7 @@ public class Product implements Serializable {
 		return productname;
 	}
 
-	public void setProductname(String productname) {
+	public void setProductname(final String productname) {
 		this.productname = productname;
 	}
 
@@ -65,7 +67,7 @@ public class Product implements Serializable {
 		return description;
 	}
 
-	public void setDescription(String description) {
+	public void setDescription(final String description) {
 		this.description = description;
 	}
 
@@ -73,7 +75,7 @@ public class Product implements Serializable {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(final String category) {
 		this.category = category;
 	}
 
@@ -81,7 +83,7 @@ public class Product implements Serializable {
 		return image;
 	}
 
-	public void setImage(String image) {
+	public void setImage(final String image) {
 		this.image = image;
 	}
 
@@ -89,7 +91,7 @@ public class Product implements Serializable {
 		return price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(final Integer price) {
 		this.price = price;
 	}
 
@@ -97,7 +99,7 @@ public class Product implements Serializable {
 		return quantity;
 	}
 
-	public void setQuantity(Integer quantity) {
+	public void setQuantity(final Integer quantity) {
 		this.quantity = quantity;
 	}
 }

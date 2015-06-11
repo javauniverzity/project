@@ -12,30 +12,28 @@ import cz.expertkom.web.interfaces.repository.ProductRepository;
 import cz.expertkom.web.vo.dto.Product;
 
 /**
- * Implementace repository pro produkt
- * @author David
+ * Implementace repository pro produkt.
  *
+ * @author Honza
  */
 @Repository
-public class ProductRepositoryImpl extends GeneralRepository<Product> implements
-		ProductRepository {
+public class ProductRepositoryImpl extends GeneralRepository<Product> implements ProductRepository {
 
 	/**
-	 * hledani produktu podle Id
-	 * */
+	 * Nacteni produktu podle Id.
+	 *
+	 * @return produkt
+	 */
 	@Override
-	public Product loadById(Long id) {
+	public Product loadById(final Long id) {
 		if (id == null) {
 			return null;
 		}
-		final CriteriaBuilder criteriaBuilder = entityManager
-				.getCriteriaBuilder();
+		final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 
-		final CriteriaQuery<Product> crit = criteriaBuilder
-				.createQuery(Product.class);
+		final CriteriaQuery<Product> crit = criteriaBuilder.createQuery(Product.class);
 		final Root<Product> products = crit.from(Product.class);
-		crit.select(products).where(
-				criteriaBuilder.equal(products.get("id"), id));
+		crit.select(products).where(criteriaBuilder.equal(products.get("id"), id));
 
 		final List<Product> results = findByCriteria(crit);
 		if (results.size() != 0) {
@@ -45,21 +43,19 @@ public class ProductRepositoryImpl extends GeneralRepository<Product> implements
 	}
 
 	/**
-	 * Hledani produktu podle nazvu produktu
-	 * */
+	 * Nacteni produktu podle nazvu produktu.
+	 *
+	 * @return produkt
+	 */
 	@Override
-	public Product loadByProductName(String productname) {
+	public Product loadByProductName(final String productname) {
 		if (productname == null || "".equals(productname)) {
 			return null;
 		}
-		final CriteriaBuilder criteriaBuilder = entityManager
-				.getCriteriaBuilder();
-		final CriteriaQuery<Product> crit = criteriaBuilder
-				.createQuery(Product.class);
+		final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		final CriteriaQuery<Product> crit = criteriaBuilder.createQuery(Product.class);
 		final Root<Product> products = crit.from(Product.class);
-		crit.select(products)
-				.where(criteriaBuilder.equal(products.get("productname"),
-						productname));
+		crit.select(products).where(criteriaBuilder.equal(products.get("productname"), productname));
 
 		final List<Product> results = findByCriteria(crit);
 		if (results.size() != 0) {
@@ -69,21 +65,25 @@ public class ProductRepositoryImpl extends GeneralRepository<Product> implements
 	}
 
 	/**
-	 * Vypis produktu
+	 * Vypis vsech produktu.
+	 *
+	 * @return list produktu
 	 */
 	@Override
 	public List<Product> getListOfProducts() {
 		final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		final CriteriaQuery<Product> createQuery = criteriaBuilder.createQuery(Product.class);
-		final CriteriaQuery<Product> select = createQuery.select(createQuery.from(Product.class));		
+		final CriteriaQuery<Product> select = createQuery.select(createQuery.from(Product.class));
 		return findByCriteria(select);
 	}
 
 	/**
-	 * Vyhledavani produktu podle nazvu ci popisu v db SQL
+	 * Vyhledej produkty obsahujici retezec v nazvu ci popisu.
+	 *
+	 * @return list produktu
 	 */
 	@Override
-	public List<Product> searchProduct(String query) {
+	public List<Product> searchProduct(final String query) {
 		if (query == null) {
 			return null;
 		}
@@ -91,29 +91,26 @@ public class ProductRepositoryImpl extends GeneralRepository<Product> implements
 
 		final CriteriaQuery<Product> crit = criteriaBuilder.createQuery(Product.class);
 		final Root<Product> products = crit.from(Product.class);
-		
-		crit.select(products).where(
-				criteriaBuilder.or(
-						criteriaBuilder.like(products.get("productname"), "%"
-								+ query + "%"),
-						criteriaBuilder.like(products.get("description"), "%"
-								+ query + "%")));
+
+		crit.select(products).where(criteriaBuilder.or(criteriaBuilder.like(products.get("productname"), "%" + query + "%"), criteriaBuilder.like(products.get("description"), "%" + query + "%")));
 
 		final List<Product> results = findByCriteria(crit);
 		return results;
 	}
-		
+
 	/**
-	 * Radic produktu 
+	 * Nacti list produktu podle kriterii.
+	 *
+	 * @return list produktu
 	 */
 	@Override
-	public List<Product> sorter(String sortBy, String sortHow) {
-		
+	public List<Product> sorter(final String sortBy, final String sortHow) {
+
 		final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-		
+
 		final CriteriaQuery<Product> crit = criteriaBuilder.createQuery(Product.class);
 		final Root<Product> products = crit.from(Product.class);
-		
+
 		if (sortBy.equals("productname")) {
 			if (sortHow.equals("asc")) {
 				crit.select(products).orderBy(criteriaBuilder.asc(products.get("productname")));
@@ -125,9 +122,9 @@ public class ProductRepositoryImpl extends GeneralRepository<Product> implements
 				crit.select(products).orderBy(criteriaBuilder.asc(products.get("price")));
 			} else {
 				crit.select(products).orderBy(criteriaBuilder.desc(products.get("price")));
-			}			
-		}	
-		
+			}
+		}
+
 		final List<Product> results = findByCriteria(crit);
 		return results;
 	}

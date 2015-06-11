@@ -18,6 +18,8 @@ import cz.expertkom.web.vo.dto.User;
 /**
  * Hlavní controller, který øeší naètení hlavní stránky a produktù podle rùzných
  * kriterií
+ * 
+ * @author Honza
  */
 
 @SessionAttributes({ "product", "user" })
@@ -35,10 +37,10 @@ public class WebController {
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String index(final Model model) {
 
-		List<Product> products = productService.getList();
+		final List<Product> products = productService.getList();
 		model.addAttribute("products", products);
 
-		User user = new User();
+		final User user = new User();
 		model.addAttribute("user", user);
 
 		return "index";
@@ -47,10 +49,9 @@ public class WebController {
 	// Fulltext vyhledávání, pøedává parametr searchProduct z formuláøe
 	// do repository CriteriaBuilderu. Výsledný list ukládá do session
 	@RequestMapping(value = "searchProduct", method = RequestMethod.GET)
-	public String searchProduct(final Model model,
-			@RequestParam("searchProduct") String searchProduct) {
+	public String searchProduct(final Model model, @RequestParam("searchProduct") final String searchProduct) {
 
-		List<Product> products = productService.searchProduct(searchProduct);
+		final List<Product> products = productService.searchProduct(searchProduct);
 		model.addAttribute("products", products);
 
 		return "index";
@@ -59,11 +60,9 @@ public class WebController {
 	// Øadièka produktù, pøedává parametry z formuláøe do repository
 	// CriteriaBuilderu. Výsledný list ukládá do session
 	@RequestMapping(value = "sorter", method = RequestMethod.GET)
-	public String sorter(final Model model,
-			@RequestParam("sortBy") String sortBy,
-			@RequestParam("sortHow") String sortHow) {
+	public String sorter(final Model model, @RequestParam("sortBy") final String sortBy, @RequestParam("sortHow") final String sortHow) {
 
-		List<Product> products = productService.sorter(sortBy, sortHow);
+		final List<Product> products = productService.sorter(sortBy, sortHow);
 		model.addAttribute("products", products);
 
 		return "index";
