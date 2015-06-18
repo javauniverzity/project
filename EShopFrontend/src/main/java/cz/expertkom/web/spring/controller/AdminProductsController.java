@@ -14,6 +14,9 @@ import cz.expertkom.web.vo.dto.Product;
 
 /**
  * Controller pro administraci, øeší vytváøení a editaci produktù
+ * 
+ * @author Marek
+ *
  */
 
 @Controller
@@ -23,7 +26,7 @@ public class AdminProductsController {
 	ProductService productService;
 
 	// Založení nového produktu:
-	// Pøi GET vytvoøíme novou instanci objektu a vložíme ji do session
+	// vytvoøí v modelu novou instanci objektu
 	@RequestMapping(value = "newProduct", method = RequestMethod.GET)
 	public String newProduct(final Model model) {
 
@@ -33,7 +36,8 @@ public class AdminProductsController {
 		return "newProduct";
 	}
 
-	// Pøi POST vezme objekt ze session a uloží ho do db pøes create na service
+	// Pøi odeslání formuláøe metodou POST nastaví parametry objektu product a
+	// uloží ho do db
 	@RequestMapping(value = "makeProduct", method = RequestMethod.POST)
 	public String makeProduct(@ModelAttribute("product") final Product product) {
 
@@ -43,8 +47,9 @@ public class AdminProductsController {
 	}
 
 	// Editace produktù:
-	// Vytvoøení stránky editace, naète seznam všech produktù a pošle je do
-	// stránky
+	// Vytvoøí v modelu objekty pro všecny produkty v db identifikovatelné dle
+	// Id a zobrazí stránku s formuláøi pro editaci
+
 	@RequestMapping(value = "editProducts")
 	public String editProducts(final Model model) {
 
@@ -60,16 +65,14 @@ public class AdminProductsController {
 		return "editProducts";
 	}
 
-	// Dle ID produktu aktualizuje objekt v db pøes update na service
-	@RequestMapping(value = "edProduct", method = {
-			RequestMethod.GET,
-			RequestMethod.POST })
+	// Dle ID produktu aktualizuje objekt v db 
+	@RequestMapping(value = "edProduct", method = { RequestMethod.GET, RequestMethod.POST })
 	public String edProduct(
 			@ModelAttribute(value = "id") final Product product, Model model) {
-		
+
 		model.addAttribute("product", product);
 		productService.update(product);
-		
+
 		return "redirect:editProducts";
 	}
 }

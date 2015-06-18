@@ -19,6 +19,7 @@ import cz.expertkom.web.vo.dto.User;
 
 /**
  * Controller øeší funkcionalitu nákupního košíku
+ *@author Marek
  */
 
 @SessionAttributes({ "user", "basket" })
@@ -32,20 +33,20 @@ public class BasketController {
 	ProductService productService;
 
 	// Vytvoøí košík, pøiøadí ho existujícímu uživateli a na základì ID mu
-	// pøiøadí produkt. Vše pošle do session
+	// pøiøadí produkt. 
 	@RequestMapping(value = "addToBasket", method = RequestMethod.GET)
 	public String addToBasket(final Model model,
 			@RequestParam("id") String productID,
 			@ModelAttribute("user") User user) {
 
-		// Pokud košík neexistuje, vytvoøíme ho
+		// Pokud košík neexistuje, vytvoøí ho
 		List<Product> basket = user.getBasket();
 		if (basket == null) {
 			basket = new ArrayList<Product>();
 			user.setBasket(basket);
 		}
 
-		// Naèteme produkt dle ID, vložíme ho do košíku a pošleme do session
+		// Naète produkt dle ID a vloží ho do košíku
 		Product product = productService.loadById(Long.valueOf(productID));
 		basket.add(product);
 		model.addAttribute("basket", basket);
